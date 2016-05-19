@@ -1,6 +1,6 @@
 Test DB
 ----
-[Giuseppe Maxia's test_db](https://github.com/datacharmer/test_db) is installed on a Cloud9 instance at https://ide.c9.io/stvhwrd/mysql, an Ubuntu workspace with an upstream clone of this (this) git repository.
+[Giuseppe Maxia's test_db](https://github.com/datacharmer/test_db) is installed on a Cloud9 instance at https://ide.c9.io/stvhwrd/mysql, an Ubuntu workspace with a clone of this git repository.
 
 
 MySQL on [Cloud9](https://ide.c9.io/stvhwrd/mysql)
