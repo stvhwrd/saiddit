@@ -9,9 +9,10 @@ MySQL user on Cloud9
 |:----------------:|:-------|
 |'csc370'|'project'|
 
-Administrative tasks can be done using the prefix:
+Administrative tasks can be done using the command prefix
 
-    mysql -p -u csc370
+`mysql -p -u csc370`
+
 and then entering the password
 
-    project
+`project`
