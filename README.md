@@ -29,6 +29,7 @@ and then entering the password:
 `project`
 
 <br>
+
 ####User
 Normally you'll want to enter the mysql command line interface as a user (not root):
 
