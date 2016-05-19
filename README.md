@@ -14,6 +14,8 @@ Cloud9 is a cloud-based dev environment.  You can sign up / sign in with your Gi
 MySQL on [Cloud9](https://ide.c9.io/stvhwrd/mysql)
 ----
 
+####Admin
+
 |Username|Password|
 |:----------------:|:-------|
 |'csc370'|'project'|
@@ -27,7 +29,7 @@ and then entering the password:
 `project`
 
 <br>
-
+####User
 Normally you'll want to enter the mysql command line interface as a user (not root):
 
 `mysql-ctl cli`
