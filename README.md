@@ -5,6 +5,10 @@ Test DB
 
 MySQL on [Cloud9](https://ide.c9.io/stvhwrd/mysql)
 ----
+
+Cloud9 is a cloud-based dev environment.  You can sign up / sign in with your GitHub account and access a shared workspace.  The team will have access to the shared workspace, but you are welcome to clone it, start from scratch, or ignore it completely.
+
+
 |Username|Password|
 |:----------------:|:-------|
 |'csc370'|'project'|
