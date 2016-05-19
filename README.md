@@ -16,3 +16,8 @@ Administrative tasks can be done using the command prefix:
 and then entering the password:
 
 `project`
+
+
+To enter the mysql command line interface as a user (not root):
+
+`mysql-ctl cli`
