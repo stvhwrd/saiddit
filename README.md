@@ -26,7 +26,8 @@ and then entering the password:
 
 `project`
 
+<br>
 
-To enter the mysql command line interface as a user (not root):
+Normally you'll want to enter the mysql command line interface as a user (not root):
 
 `mysql-ctl cli`
