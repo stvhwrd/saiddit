@@ -34,3 +34,7 @@ and then entering the password:
 Normally you'll want to enter the mysql command line interface as a user (not root):
 
 `mysql-ctl cli`
+
+
+<script src="https://gist.github.com/hofmannsven/9164408.js"></script>
+
