@@ -1,49 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-  <!-- Basic Page Needs
+    <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>Your page title here :)</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <title>saiddit: the front page of the intranet</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <!-- Mobile Specific Metas
+    <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- FONT
+    <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
 
-  <!-- CSS
+    <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
-  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 
-  <!-- Favicon
+    <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" type="image/png" href="images/favicon.png">
 
 </head>
+
 <body>
 
-  <!-- Primary Page Layout
+    <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container">
-    <div class="row">
-      <div class="one-half column" style="margin-top: 25%">
-        <h4>Basic Page</h4>
-        <p>This index.html page is a placeholder with the CSS, font and favicon. It's just waiting for you to add some content! If you need some help hit up the <a href="http://www.getskeleton.com">Skeleton documentation</a>.</p>
-          
-        <p>We can use <a href="http://www.getskeleton.com">PURE CSS</a> to add some form fields for user interaction with the saiddit DB.</p>
-      </div>
+    <div class="container">
+        <div class="row">
+            <div class="one-half column" style="margin-top: 10%">
+                <h4>Basic Page</h4>
+                <p>We can use <a href="http://www.getskeleton.com">PURE CSS</a> to add some form fields for user interaction with the saiddit DB.</p>
+                <p>This index.html page is a placeholder with the CSS, font and favicon. It's just waiting for you to add some content! If you need some help hit up the <a href="http://www.getskeleton.com">Skeleton documentation</a>.</p>
+            </div>
+        </div>
     </div>
-  </div>
+    <form class="pure-form pure-form-aligned">
+        <fieldset>
+            <div class="pure-control-group">
+                <label for="name">Username</label>
+                <input id="name" type="text" placeholder="Username">
+            </div>
 
-<!-- End Document
+            <div class="pure-control-group">
+                <label for="password">Password</label>
+                <input id="password" type="password" placeholder="Password">
+            </div>
+
+            <div class="pure-control-group">
+                <label for="email">Email Address</label>
+                <input id="email" type="email" placeholder="Email Address">
+            </div>
+
+            <div class="pure-control-group">
+                <label for="foo">Supercalifragilistic Label</label>
+                <input id="foo" type="text" placeholder="Enter something here...">
+            </div>
+
+            <div class="pure-controls">
+                <label for="cb" class="pure-checkbox">
+                    <input id="cb" type="checkbox"> I've read the terms and conditions
+                </label>
+
+                <button type="submit" class="pure-button pure-button-primary">Submit</button>
+            </div>
+        </fieldset>
+    </form>
+
+
+    <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
+
 </html>
