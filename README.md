@@ -9,6 +9,7 @@
 3. [Flask](#flaskapp)
   + [Resources](#resources)
   + [Structure](#structure)
+4. [Project Final Expectations and Deliverables](#project-final-expectations-and-deliverables)
 
 
 ----
@@ -104,7 +105,7 @@ The basic file structure of a small flask application (as ours will be) is:
 <br>
 
 
-### Project Final Expectations and Deliverables
+## Project Final Expectations and Deliverables
 
 
 1. E/R diagram for your solution.
