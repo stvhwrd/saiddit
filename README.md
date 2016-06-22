@@ -10,6 +10,7 @@
   + [Resources](#resources)
   + [Structure](#structure)
 
+
 ----
 
 ## Cloud9
@@ -98,3 +99,42 @@ The basic file structure of a small flask application (as ours will be) is:
       └── login.html
         ...
 ````
+
+<br>
+<br>
+
+
+### Project Final Expectations and Deliverables
+
+
+1. E/R diagram for your solution.
+
+2. Passwords must be stored in a salted hash format (no plaintext passwords)
+
+3. Translate your E/R diagram into tables in MySQL and include the necessary constraints.
+
+4. Create forms to populate your tables.
+
+5. Create a logged-in “front-page” for a given account.  A front-page shows the top-voted posts for an account’s subscribed subsaiddits.
+
+6. Create a “default” front-page (not logged-in) that includes only the top-voted posts from the default subsaiddits.
+
+7. Create a form to delete a post (and all of its comments)
+
+8. Create and execute the following SQL queries (Will be tested in demo):
+
+  * Get all of the posts by account A, sorted by highest rating (upvotes minus downvotes)
+
+  * Get all of the posts from account A’s friends, sorted by highest rating.
+
+  * Get account A’s subscrbed subsaiddits (include the default subsaiddits)
+
+  * Get account A’s favourite posts
+
+  * Get account A’s friends’ favourite posts
+
+  * Get all of subsaiddit S’s creator’s posts
+
+  * Get all of the posts in subsaiddit S that contain ``<some text>`` (Very basic search)
+
+9. What query in section 8 took the most time to execute?  Why?
