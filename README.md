@@ -90,14 +90,14 @@ Flask is a Python web framework built with a small core and easy-to-extend philo
 The basic file structure of a small flask application (as ours will be) is:
 
 ````
-/FlaskApp
- ├── app.py
- ├── /static
-      └── style.css
-     /templates
-      ├── layout.html
-      ├── index.html
-      └── login.html
+FlaskApp/
+├── app.py
+├── static/
+    └── style.css
+    templates/
+    ├── layout.html
+    ├── index.html
+    └── login.html
         ...
 ````
 
