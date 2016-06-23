@@ -92,7 +92,7 @@ The basic file structure of a small flask application (as ours will be) is:
 ````
 FlaskApp/
 ├── app.py
-├── static/
+└── static/
     └── style.css
     templates/
     ├── layout.html
