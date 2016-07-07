@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Saiddit-project : Saiddit">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Saiddit-project</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/stvhwrd/saiddit-project">View on GitHub</a>
+
+          <h1 id="project_title">Saiddit-project</h1>
+          <h2 id="project_tagline">Saiddit</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/stvhwrd/saiddit-project/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/stvhwrd/saiddit-project/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>
+<a id="table-of-contents" class="anchor" href="#table-of-contents" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Table of Contents</h3>
+
+<ol>
+<li>
+<a href="#cloud9">Cloud9</a>
+
+<ul>
+<li><a href="#test-db">Test DB</a></li>
+<li>
+<a href="#credentials">Credentials</a>
+
+<ul>
+<li><a href="#admin">Admin</a></li>
+<li><a href="#user">User</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#mysql">MySQL</a>
+
+<ul>
+<li><a href="#cheatsheet">CheatSheet</a></li>
+</ul>
+</li>
+<li>
+<a href="#flaskapp">Flask</a>
+
+<ul>
+<li><a href="#resources">Resources</a></li>
+<li><a href="#structure">Structure</a></li>
+</ul>
+</li>
+<li><a href="#project-final-expectations-and-deliverables">Project Final Expectations and Deliverables</a></li>
+</ol>
+
+<hr>
+
+<h2>
+<a id="cloud9" class="anchor" href="#cloud9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Cloud9</h2>
+
+<p><a href="https://c9.io">Cloud9</a> is a cloud-based dev environment.  You can sign up / sign in with your GitHub account and access a <a href="https://ide.c9.io/stvhwrd/csc370-project">shared workspace</a>.  The team (<a href="https://github.com/dylgol">@dylgol</a>, <a href="https://github.com/sterlinglaird">@sterlinglaird</a>, <a href="https://github.com/stvhwrd">@stvhwrd</a>) will always have access to the shared workspace, but you are welcome to clone it, start from scratch, or ignore it completely.</p>
+
+<p><br></p>
+
+<h3>
+<a id="test-db" class="anchor" href="#test-db" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Test DB</h3>
+
+<p><a href="https://github.com/datacharmer/test_db">Giuseppe Maxia test_db</a> is installed on the Cloud9 instance at <a href="https://ide.c9.io/stvhwrd/csc370-project">https://ide.c9.io/stvhwrd/csc370-project</a>, an Ubuntu workspace with a clone of this git repository.</p>
+
+<p><br></p>
+
+<h3>
+<a id="credentials" class="anchor" href="#credentials" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Credentials</h3>
+
+<h4>
+<a id="user" class="anchor" href="#user" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>User</h4>
+
+<p>Normally you'll want to enter the MySQL command line interface as a user (not root):</p>
+
+<p><code>mysql-ctl cli</code></p>
+
+<p><br></p>
+
+<h4>
+<a id="admin" class="anchor" href="#admin" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Admin</h4>
+
+<table>
+<thead>
+<tr>
+<th align="center">Username</th>
+<th align="left">Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">'csc370'</td>
+<td align="left">'project'</td>
+</tr>
+</tbody>
+</table>
+
+<p>Administrative tasks can be done using the command prefix:</p>
+
+<p><code>mysql -p -u csc370</code></p>
+
+<p>and then entering the password:</p>
+
+<p><code>project</code></p>
+
+<p><br>
+<br></p>
+
+<h2>
+<a id="mysql" class="anchor" href="#mysql" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MySQL</h2>
+
+<p>"MySQL (officially pronounced as "My S-Q-L") is an open-source relational database management system... the world's second most widely used RDBMS, and the most widely used open-source client–server model RDBMS." - <a href="https://en.wikipedia.org/wiki/MySQL">Wikipedia</a></p>
+
+<h3>
+<a id="cheatsheet" class="anchor" href="#cheatsheet" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Cheatsheet</h3>
+
+<p>Here's a handy cheat sheet for playing with MySQL: <a href="https://gist.github.com/hofmannsven/9164408#file-readme-md">Sven Hofmann's MySQL Cheatsheet</a></p>
+
+<p><br>
+<br></p>
+
+<h2>
+<a id="flask" class="anchor" href="#flask" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Flask</h2>
+
+<p>Flask is a Python web framework built with a small core and easy-to-extend philosophy.  We will be using it to interface between the HTML frontend and the MySQL backend.</p>
+
+<p><br></p>
+
+<h3>
+<a id="resources" class="anchor" href="#resources" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Resources:</h3>
+
+<ul>
+<li><a href="https://www.fullstackpython.com/flask.html">Why is Flask a good web framework choice?</a></li>
+<li><a href="http://flask-mysqldb.readthedocs.io/en/latest/">Flask-MySQLdb’s documentation</a></li>
+<li><a href="http://code.tutsplus.com/tutorials/creating-a-web-app-from-scratch-using-python-flask-and-mysql--cms-22972">Creating a Web App From Scratch Using Python Flask and MySQL</a></li>
+<li><a href="http://codehandbook.org/python-web-application-development-using-flask-and-mysql/">Python Web Application Development Using Flask and MySQL</a></li>
+</ul>
+
+<p><br></p>
+
+<h3>
+<a id="structure" class="anchor" href="#structure" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Structure</h3>
+
+<p>The basic file structure of a small flask application (as ours will be) is:</p>
+
+<pre><code>FlaskApp/
+├── app.py
+└── static/
+    └── style.css
+    templates/
+    ├── layout.html
+    ├── index.html
+    └── login.html
+        ...
+</code></pre>
+
+<p><br>
+<br></p>
+
+<h2>
+<a id="project-final-expectations-and-deliverables" class="anchor" href="#project-final-expectations-and-deliverables" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Project Final Expectations and Deliverables</h2>
+
+<ol>
+<li><p>E/R diagram for your solution.</p></li>
+<li><p>Passwords must be stored in a salted hash format (no plaintext passwords)</p></li>
+<li><p>Translate your E/R diagram into tables in MySQL and include the necessary constraints.</p></li>
+<li><p>Create forms to populate your tables.</p></li>
+<li><p>Create a logged-in “front-page” for a given account.  A front-page shows the top-voted posts for an account’s subscribed subsaiddits.</p></li>
+<li><p>Create a “default” front-page (not logged-in) that includes only the top-voted posts from the default subsaiddits.</p></li>
+<li><p>Create a form to delete a post (and all of its comments)</p></li>
+<li>
+<p>Create and execute the following SQL queries (Will be tested in demo):</p>
+
+<ul>
+<li><p>Get all of the posts by account A, sorted by highest rating (upvotes minus downvotes)</p></li>
+<li><p>Get all of the posts from account A’s friends, sorted by highest rating.</p></li>
+<li><p>Get account A’s subscrbed subsaiddits (include the default subsaiddits)</p></li>
+<li><p>Get account A’s favourite posts</p></li>
+<li><p>Get account A’s friends’ favourite posts</p></li>
+<li><p>Get all of subsaiddit S’s creator’s posts</p></li>
+<li><p>Get all of the posts in subsaiddit S that contain <code>&lt;some text&gt;</code> (Very basic search)</p></li>
+</ul>
+</li>
+<li><p>What query in section 8 took the most time to execute?  Why?</p></li>
+</ol>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Saiddit-project maintained by <a href="https://github.com/stvhwrd">stvhwrd</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
