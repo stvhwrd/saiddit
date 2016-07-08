@@ -81,7 +81,7 @@ Flask is a Python web framework built with a small core and easy-to-extend philo
 * [Flask-MySQLdb’s documentation](http://flask-mysqldb.readthedocs.io/en/latest/)
 * [Creating a Web App From Scratch Using Python Flask and MySQL](http://code.tutsplus.com/tutorials/creating-a-web-app-from-scratch-using-python-flask-and-mysql--cms-22972)
 * [Python Web Application Development Using Flask and MySQL](http://codehandbook.org/python-web-application-development-using-flask-and-mysql/)
-
+* [A Quick Guide to Using MySQL in Python](http://ianhowson.com/a-quick-guide-to-using-mysql-in-python.html)
 <br>
 
 
