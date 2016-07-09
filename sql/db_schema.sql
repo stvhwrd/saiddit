@@ -1,59 +1,63 @@
-DROP DATABASE IF EXISTS saidit;
-CREATE DATABASE saidit;
+DROP DATABASE IF EXISTS saiddit;
+CREATE DATABASE saiddit;
 
-USE saidit;
+USE saiddit;
 
 create table Accounts(
 	username VARCHAR(255) PRIMARY KEY,
-	password CHAR(20) NOT NULL,
+	password CHAR(64) NOT NULL,
 	reputation INT DEFAULT 0
 );
 
-create table Subsaidits(
+create table Subsaiddits(
 	title VARCHAR(255) PRIMARY KEY,
 	description VARCHAR(512),
-	creation_time DATETIME DEFAULT NOW(),
-	front_page BOOLEAN DEFAULT 0,
 	creator_key VARCHAR(255) NOT NULL,
+	creation_time DATETIME,
+	front_page BOOLEAN DEFAULT 0,
 
 	FOREIGN KEY (creator_key) REFERENCES Accounts(username) ON DELETE CASCADE
 );
 
-CREATE TABLE posts (
+CREATE TABLE Posts (
     post_id INT AUTO_INCREMENT PRIMARY KEY,
+    publish_time DATETIME,
+    edit_time DATETIME,    
     title VARCHAR(255) NOT NULL,
-    author VARCHAR(255) NOT NULL,
-    publish_time DATETIME DEFAULT NOW(),
-    edit_time DATETIME DEFAULT NOW(),
-    subsaidit VARCHAR(255) NOT NULL,
-    url VARCHAR(2048),
+    url VARCHAR(2048),    
+    text TEXT,    
     upvotes INT DEFAULT 0,
     downvotes INT DEFAULT 0,
-    text BLOB,
+    subsaiddit VARCHAR(255) NOT NULL,
+    author_key VARCHAR(255) NOT NULL,
 
-    FOREIGN KEY (subsaidit) REFERENCES Subsaidits(title) ON DELETE CASCADE,
-    FOREIGN KEY (author) REFERENCES Accounts(username) ON DELETE CASCADE
+    FOREIGN KEY (subsaiddit) REFERENCES Subsaiddits(title) ON DELETE CASCADE,
+    FOREIGN KEY (author_key) REFERENCES Accounts(username) ON DELETE CASCADE 
 );
 
 create table Comments(
     comment_id INT AUTO_INCREMENT PRIMARY KEY,
-    commentor_id VARCHAR(255) NOT NULL,
+    creation_time DATETIME,    
+    text TEXT,
+    parent_post INT NOT NULL,    
     upvotes INT,
     downvotes INT,
-    creation_time DATETIME DEFAULT NOW(),
-    text VARCHAR(1024),
+    parent_message INT,
+    commentor_id VARCHAR(255) NOT NULL,
 
+    FOREIGN KEY (parent_post) REFERENCES Posts(post_id) ON DELETE CASCADE,
     FOREIGN KEY (commentor_id) REFERENCES Accounts(username) ON DELETE CASCADE
 );
 
 create table Favourites(
     user_id VARCHAR(255),
-    post_id VARCHAR(255),
+    post_id INT,
 
+    FOREIGN KEY (post_id) REFERENCES Posts(post_id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES Accounts(username) ON DELETE CASCADE
 );
 
-CREATE TABLE friends (
+CREATE TABLE Friends (
     user_id VARCHAR(255) NOT NULL,
     friend_id VARCHAR(255) NOT NULL,
 
@@ -62,11 +66,32 @@ CREATE TABLE friends (
     FOREIGN KEY (friend_id) REFERENCES Accounts(username) ON DELETE CASCADE
 );
 
-CREATE TABLE subscribes (
+CREATE TABLE Subscribes (
     user_id VARCHAR(255) NOT NULL,
-    subsaid_id VARCHAR(255) NOT NULL,
+    subsaidd_id VARCHAR(255) NOT NULL,
 
-    PRIMARY KEY (user_id, subsaid_id),
+    PRIMARY KEY (user_id, subsaidd_id),
     FOREIGN KEY (user_id) REFERENCES Accounts(username) ON DELETE CASCADE,
-    FOREIGN KEY (subsaid_id) REFERENCES Subsaidits(title) ON DELETE CASCADE
+    FOREIGN KEY (subsaidd_id) REFERENCES Subsaiddits(title) ON DELETE CASCADE
 );
+
+CREATE TABLE Votes (
+    user_id VARCHAR(255) NOT NULL,
+    vote BOOLEAN NOT NULL,
+    post_id INT NOT NULL,
+    
+    PRIMARY KEY (user_id, post_id),
+    FOREIGN KEY (user_id) REFERENCES Accounts(username) ON DELETE CASCADE,
+    FOREIGN KEY (post_id) REFERENCES Posts(post_id) ON DELETE CASCADE
+);
+
+
+CREATE TRIGGER create_time_subsaiddit BEFORE INSERT ON Subsaidits FOR EACH ROW
+    SET NEW.creation_time = NOW();
+
+CREATE TRIGGER create_time_post BEFORE INSERT ON Posts FOR EACH ROW
+    SET NEW.publish_time = NOW();
+
+CREATE TRIGGER create_time_comment BEFORE INSERT ON Comments FOR EACH ROW
+    SET NEW.creation_time = NOW();
+
