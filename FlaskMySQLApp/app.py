@@ -2,6 +2,7 @@ from flask import Flask, render_template, json, request
 from flaskext.mysql import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 from os import getenv
+import sys #for stderr
 
 mysql = MySQL()
 app = Flask(__name__)
@@ -26,26 +27,28 @@ def showSignUp():
 def showLogIn():
     return render_template('login.html')
 
-
 @app.route('/signUp', methods=['POST','GET'])
 def signUp():
     try:
-        _name = request.form['inputName']
-        _email = request.form['inputEmail']
-        _password = request.form['inputPassword']
-
+        username = request.form['inputName']
+        email = request.form['inputEmail']
+        password = request.form['inputPassword']
+        hashed_password = generate_password_hash(password, method="sha256", salt_length=8)
+        
+        #truncates the salt away, fix this so we can access account later
+        hashed_password = hashed_password[7:]
+        
+        conn = mysql.connect()
+        cursor = conn.cursor()        
+       
         # validate the received values
-        if _name and _email and _password:
+        if username and password:
+            insert_stmt =  "INSERT INTO Accounts (username,password) VALUES (%s, %s)"
+            data = (username, hashed_password)
+            cursor.execute(insert_stmt,data)    
+            info = cursor.fetchone()
 
-            # All Good, let's call MySQL
-
-            conn = mysql.connect()
-            cursor = conn.cursor()
-            _hashed_password = generate_password_hash(_password)
-            cursor.callproc('sp_createUser',(_name,_email,_hashed_password))
-            data = cursor.fetchall()
-
-            if len(data) is 0:
+            if info is None:
                 conn.commit()
                 return json.dumps({'message':'User created successfully !'})
             else:
@@ -54,6 +57,7 @@ def signUp():
             return json.dumps({'html':'<span>Enter the required fields</span>'})
 
     except Exception as e:
+        sys.stderr.write(str(e))
         return json.dumps({'error':str(e)})
     finally:
         cursor.close()
