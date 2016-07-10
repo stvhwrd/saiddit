@@ -54,6 +54,13 @@ and then entering the password:
 `project`
 
 <br>
+
+#### Saiddit Database
+
+Setup the database by `bash setup.sh` in the sql folder.
+This inputs the contents of db_schema.sql into MySQL
+
+<br>
 <br>
 
 ## MySQL
