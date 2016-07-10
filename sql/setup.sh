@@ -1,0 +1,1 @@
+mysql-ctl cli < db_schema.sql
