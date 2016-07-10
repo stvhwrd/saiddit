@@ -6,7 +6,7 @@ USE saiddit;
 /* Creates the database*/
 create table Accounts(
 	username VARCHAR(255) PRIMARY KEY,
-	password CHAR(73) NOT NULL,
+	password CHAR(80) NOT NULL,
 	reputation INT DEFAULT 0
 );
 

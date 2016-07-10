@@ -35,9 +35,6 @@ def signUp():
         password = request.form['inputPassword']
         hashed_password = generate_password_hash(password, method="sha256", salt_length=8)
         
-        #truncates the salt away, fix this so we can access account later
-        hashed_password = hashed_password[7:]
-        
         conn = mysql.connect()
         cursor = conn.cursor()        
        
