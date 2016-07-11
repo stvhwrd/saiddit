@@ -53,7 +53,7 @@ mysql> GRANT ALL PRIVILEGES ON * . * TO 'csc370'@'localhost';
 ❯❯❯ mysql -h localhost -u csc370 -p < ./db_schema.sql;
 ```
 
-#### Note: If you are working in a Cloud9 instance, you may simply use the [setup script](https://github.com/stvhwrd/csc370-project#saiddit-database) at this step.
+#### Note: If you are working in a Cloud9 instance, you may simply use the [setup script](#saiddit-database) at this step.
 
 
 ### 5. Install Python 2.x and pip:
