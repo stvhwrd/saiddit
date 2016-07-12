@@ -1,3 +1,8 @@
+/*
+This file has functions related to the navigation bar at the top of each webpage, must included in every 
+    webpage.
+*/
+
 $(function(){
 	$('#btnSignUp').click(function(){
 
@@ -19,7 +24,7 @@ $(function(){
 	$('#btnLogIn').click(function(){
 
 		$.ajax({
-			url: '/signUp',
+			url: '/logIn',
 			data: $('form').serialize(),
 			type: 'POST',
 			success: function(response){
