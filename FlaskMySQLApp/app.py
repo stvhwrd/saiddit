@@ -28,7 +28,7 @@ def showSignUp():
 @app.route('/showLogIn')
 def showLogIn():
     return render_template('login.html')
-<<<<<<< HEAD
+    
     
 @app.route('/logIn', methods=['POST','GET'])
 def logIn():
@@ -44,8 +44,7 @@ def logIn():
             
             cursor.execute("SELECT password FROM Accounts WHERE username='"+username+"'")
             password_hash = str(cursor.fetchone())[3:83] # becuase mysql adds 'u' to the front of the string and ',) to the end. Because we're converting from a tuple?
-            sys.stderr.write(password+"\n")
-            sys.stderr.write(password_hash+"\n")
+            
             # check if password is correct else say that it was incorrect password or username
             if check_password_hash(password_hash,password):
                 sys.stderr.write("correct username and password")
@@ -60,33 +59,23 @@ def logIn():
         cursor.close()
         conn.close()     
  
-@app.route('/signUp', methods=['POST','GET'])
-=======
-
 
 @app.route('/signUp', methods=['POST', 'GET'])
->>>>>>> 7b6e3d9b08ffca3558edae95c7d225865d5cc680
 def signUp():
     try:
         username = request.form['inputName']
         password = request.form['inputPassword']
-<<<<<<< HEAD
-       
-=======
+
         hashed_password = generate_password_hash(password, method="sha256", salt_length=8)
 
->>>>>>> 7b6e3d9b08ffca3558edae95c7d225865d5cc680
         conn = mysql.connect()
         cursor = conn.cursor()
 
         # validate the received values
         if username and password:
-<<<<<<< HEAD
             hashed_password = generate_password_hash(password,method="sha256", salt_length=8)
             insert_stmt =  "INSERT INTO Accounts (username,password) VALUES (%s, %s)"
-=======
             insert_stmt = "INSERT INTO Accounts (username,password) VALUES (%s, %s)"
->>>>>>> 7b6e3d9b08ffca3558edae95c7d225865d5cc680
             data = (username, hashed_password)
             cursor.execute(insert_stmt, data)
             info = cursor.fetchone()
@@ -105,6 +94,7 @@ def signUp():
     finally:
         cursor.close()
         conn.close()
+        
 
 if __name__ == "__main__":
     app.run(host=getenv('IP', '0.0.0.0'), port=int(getenv('PORT', 8080)))
