@@ -1,18 +1,94 @@
 ### Table of Contents
-1. [Cloud9](#cloud9)
+1. [Installation & Setup](#installation-and-setup)
+2. [Cloud9](#cloud9)
   + [Test DB](#test-db)
   + [Credentials](#credentials)
     + [Admin](#admin)
     + [User](#user)
-2. [MySQL](#mysql)
+3. [MySQL](#mysql)
   + [CheatSheet](#cheatsheet)
-3. [Flask](#flaskapp)
+4. [Flask](#flaskapp)
   + [Resources](#resources)
   + [Structure](#structure)
-4. [Project Final Expectations and Deliverables](#project-final-expectations-and-deliverables)
+5. [Project Final Expectations and Deliverables](#project-final-expectations-and-deliverables)
 
 
 ----
+## Installation and Setup 
+(Ubuntu 14.04 LTS)
+
+#### Note: The chevrons (❯❯❯) represent the bash/zsh shell command prompt.
+
+### 1. Clone this repository:
+
+```
+❯❯❯ git clone https://github.com/stvhwrd/csc370-project.git saiddit;
+❯❯❯ cd saiddit;
+```
+
+### 2. [Install MySQL](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-14-04):
+
+```
+❯❯❯ sudo apt-get update;
+❯❯❯ sudo apt-get install mysql-server;
+❯❯❯ sudo mysql_secure_installation;
+❯❯❯ sudo mysql_install_db;
+```
+
+### 3. [Launch MySQL and create our user](https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql):
+
+```
+❯❯❯ mysql -u csc370 -p
+
+mysql> CREATE USER 'csc370'@'localhost' IDENTIFIED BY 'project';
+
+mysql> GRANT ALL PRIVILEGES ON * . * TO 'csc370'@'localhost';
+
+```
+
+### 4. Create the database (will be required to enter password - `project`):
+
+```
+❯❯❯ cd ./sql;
+❯❯❯ mysql -h localhost -u csc370 -p < ./db_schema.sql;
+```
+
+#### Note: If you are working in a Cloud9 instance, you may simply use the [setup script](#saiddit-database) at this step.
+
+
+### 5. Install Python 2.x and pip:
+
+```
+❯❯❯ sudo apt-get install python python-pip python-dev build-essential;
+```
+
+
+### 6. Then install python dependencies:
+
+```
+❯❯❯ sudo apt-get install libmysqlclient-dev;
+❯❯❯ pip install flask flask-mysql;
+````
+
+### 7. Now start up your MySQL server, and use the saiddit database:
+
+````
+❯❯❯ mysql -u csc370 -p;
+❯❯❯ use saiddit;
+````
+
+### 8. Navigate to the `FlaskMySQLApp` folder, and fire up the Flask app:
+
+#### Note: the FlaskMySQLApp is a nested directory within the main `saiddit` directory. These instructions assume that your present working directory is `saiddit`.  Type `pwd` to find out which directory you are "in".
+
+````
+❯❯❯ cd ./FlaskMySQLApp
+❯❯❯ python app.py
+````
+
+### 9. Now open your browser to the port the app is running on:  http://0.0.0.0:8080/
+
+
 
 ## Cloud9
 
