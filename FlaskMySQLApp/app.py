@@ -26,20 +26,50 @@ def showSignUp():
 @app.route('/showLogIn')
 def showLogIn():
     return render_template('login.html')
-
+    
+@app.route('/logIn', methods=['POST','GET'])
+def logIn():
+    try:
+        username = request.form['inputName']
+        password = request.form['inputPassword']
+        
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        
+        # If we got the username and password
+        if username and password:
+            
+            cursor.execute("SELECT password FROM Accounts WHERE username='"+username+"'")
+            password_hash = str(cursor.fetchone())[3:83] # becuase mysql adds 'u' to the front of the string and ',) to the end. Because we're converting from a tuple?
+            sys.stderr.write(password+"\n")
+            sys.stderr.write(password_hash+"\n")
+            # check if password is correct else say that it was incorrect password or username
+            if check_password_hash(password_hash,password):
+                sys.stderr.write("correct username and password")
+                return json.dumps({'html':'<span>Enter the required fields</span>'})
+            else:
+               sys.stderr.write("Incorrect username or password")
+               return json.dumps({'html':'<span>Enter the required fields</span>'})
+    except Exception as e:
+        sys.stderr.write(str(e))
+        return json.dumps({'error':str(e)})
+    finally:
+        cursor.close()
+        conn.close()     
+ 
 @app.route('/signUp', methods=['POST','GET'])
 def signUp():
     try:
         username = request.form['inputName']
         email = request.form['inputEmail']
         password = request.form['inputPassword']
-        hashed_password = generate_password_hash(password, method="sha256", salt_length=8)
-        
+       
         conn = mysql.connect()
         cursor = conn.cursor()        
        
         # validate the received values
         if username and password:
+            hashed_password = generate_password_hash(password,method="sha256", salt_length=8)
             insert_stmt =  "INSERT INTO Accounts (username,password) VALUES (%s, %s)"
             data = (username, hashed_password)
             cursor.execute(insert_stmt,data)    
