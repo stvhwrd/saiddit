@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json, request
+from flask import Flask, render_template, json, request, redirect, session
 from flaskext.mysql import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 from os import getenv
@@ -6,6 +6,7 @@ import sys  # for stderr
 
 mysql = MySQL()
 app = Flask(__name__)
+app.secret_key = 'why would I tell you my secret key?'
 
 # MySQL configurations
 app.config['MYSQL_DATABASE_USER'] = 'csc370'
@@ -15,22 +16,38 @@ app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
 
 
+# handles / URL to go to the front page
 @app.route('/')
 def main():
     return render_template('index.html')
 
 
+# handles /showSignUp URL to go to the signup page
 @app.route('/showSignUp')
 def showSignUp():
     return render_template('signup.html')
 
-
+# handles /showLogIn URL to go to the login page
 @app.route('/showLogIn')
 def showLogIn():
     return render_template('login.html')
 
 
-@app.route('/logIn', methods=['POST', 'GET'])
+# handles /userHome URL to go to the users front page
+@app.route('/userHome')
+def userHome():
+    return render_template('userHome.html')
+
+
+# handles /logOut URL to log out of an account
+@app.route('/logOut')
+def logOut():
+    session.pop('user',None)
+    return redirect('/')
+
+
+# handles /login URL to go to verify password and username, and go to the users front page
+@app.route('/logIn', methods=['POST'])
 def logIn():
     try:
         username = request.form['inputName']
@@ -48,19 +65,21 @@ def logIn():
 
             # check if password is correct else say that it was incorrect password or username
             if check_password_hash(password_hash, password):
-                sys.stderr.write("correct username and password")
-                return json.dumps({'html': '<span>Enter the required fields</span>'})
+                sys.stderr.write("correct username and password\n")
+                session['user'] = username
+                return json.dumps({'result': 'success', 'user': username})
             else:
-                sys.stderr.write("Incorrect username or password")
-                return json.dumps({'html': '<span>Enter the required fields</span>'})
+                sys.stderr.write("Incorrect username or password\n")
+                return json.dumps({'result': 'failed'})
     except Exception as e:
-        sys.stderr.write(str(e))
+        sys.stderr.write(str(e)+"\n")
         return json.dumps({'error': str(e)})
     finally:
         cursor.close()
         conn.close()
 
 
+# handles /signUp URL to check if a username has been claimed, if not creates a user from their username and password
 @app.route('/signUp', methods=['POST', 'GET'])
 def signUp():
     try:
@@ -82,7 +101,7 @@ def signUp():
 
             if info is None:
                 conn.commit()
-                return json.dumps({'message': 'User created successfully !'})
+                return json.dumps({'html': '<span>Enter the required fields</span>'})
             else:
                 return json.dumps({'error': str(data[0])})
         else:
@@ -96,5 +115,10 @@ def signUp():
         conn.close()
 
 
+# handles /getName URL to get the name of the active user (for database access/insertion purposes)
+@app.route('/getName')
+def getName():
+    return  json.dumps({'result': 'success', 'name':session['user']})
+    
 if __name__ == "__main__":
     app.run(host=getenv('IP', '0.0.0.0'), port=int(getenv('PORT', 8080)))

@@ -13,6 +13,7 @@
     <link href="../static/css/signup.css" rel="stylesheet">
 
     <script src="../static/js/jquery-1.11.2.js"></script>
+     <script src="../static/js/userHome.js"></script>
 
   </head>
 
@@ -21,9 +22,9 @@
       <div class="navbar navbar-default navbar-fixed-top">
         <nav>
           <ul class="nav nav-pills pull-right">
+            <li role="presentation"><span id=name></span></li>
             <li role="presentation" class="active"><a href="#">Home</a></li>
-		      	<li role="presentation"><a href="/showLogIn">Log In</a></li>
-		        <li role="presentation"><a href="/showSignUp">Sign Up</a></li>
+		        <li role="presentation"><a href="/logOut">Log Out</a></li>
           </ul>
         </nav>
         <img src="../static/images/saiddit.png" alt="saiddit" height="36" width=auto>
@@ -100,8 +101,13 @@
       <footer class="footer">
         <p>&copy; SSD 2016</p>
       </footer>
-
     </div>
+    
+    <script type="text/javascript">
+    
+      document.getElementById("name").innerHTML = getName();
+      
+    </script>
   </body>
 </html>
 
