@@ -95,28 +95,3 @@ CREATE TRIGGER create_time_post BEFORE INSERT ON Posts FOR EACH ROW
 
 CREATE TRIGGER create_time_comment BEFORE INSERT ON Comments FOR EACH ROW
     SET NEW.creation_time = NOW();
-
-/* Stored procedures for POST requests */
-DELIMITER $$
-CREATE DEFINER=`csc370`@`localhost` PROCEDURE `sp_createUser`(
-    IN p_username VARCHAR(20),
-    IN p_password VARCHAR(20)
-)
-BEGIN
-    if ( select exists (select 1 from Accounts where username = p_username) ) THEN
-        select 'Username Exists !!';
-    ELSE
-        insert into Accounts
-        (
-            user_username,
-            user_password
-        )
-        values
-        (
-            p_username,
-            p_password
-        );
-     
-    END IF;
-END$$
-DELIMITER ;
