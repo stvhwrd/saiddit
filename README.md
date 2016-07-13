@@ -14,7 +14,7 @@
 
 
 ----
-## Installation and Setup 
+## Installation and Setup
 (Ubuntu 14.04 LTS)
 
 #### Note: The chevrons (❯❯❯) represent the bash/zsh shell command prompt.
@@ -222,3 +222,6 @@ FlaskApp/
   * Get all of the posts in subsaiddit S that contain ``<some text>`` (Very basic search)
 
 9. What query in section 8 took the most time to execute?  Why?
+
+
+That's all we have to do.
