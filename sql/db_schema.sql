@@ -113,8 +113,8 @@ INSERT INTO Posts (title, url, subsaiddit, author_key) VALUES ("test3","www.www.
 INSERT INTO Posts (title, url, subsaiddit, author_key) VALUES ("test4","www.yelp.com","ayyy","james");
 INSERT INTO Posts (title, url, subsaiddit, author_key) VALUES ("test5","www.google.com","all","yoda");
 
-INSERT INTO Posts (title, text, subsaiddit, author_key) VALUES ("test1","words","news","yoda");
-INSERT INTO Posts (title, text, subsaiddit, author_key) VALUES ("test2","abcdefg","movies","sarah");
-INSERT INTO Posts (title, text, subsaiddit, author_key) VALUES ("test3","gibberish","news","bob");
-INSERT INTO Posts (title, text, subsaiddit, author_key) VALUES ("test4","slightly longer gibberish","ayyy","yoda");
-INSERT INTO Posts (title, text, subsaiddit, author_key) VALUES ("test5","lol","all","james");
+INSERT INTO Posts (title, text, subsaiddit, author_key) VALUES ("test6","words","news","yoda");
+INSERT INTO Posts (title, text, subsaiddit, author_key) VALUES ("test7","abcdefg","movies","sarah");
+INSERT INTO Posts (title, text, subsaiddit, author_key) VALUES ("test8","gibberish","news","bob");
+INSERT INTO Posts (title, text, subsaiddit, author_key) VALUES ("test9","slightly longer gibberish","ayyy","yoda");
+INSERT INTO Posts (title, text, subsaiddit, author_key) VALUES ("test10","lol","all","james");

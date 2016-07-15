@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json, request, redirect, session
+from flask import Flask, render_template, json, request, redirect, session, jsonify
 from flaskext.mysql import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 from os import getenv
@@ -119,6 +119,21 @@ def signUp():
 @app.route('/getName')
 def getName():
     return  json.dumps({'result': 'success', 'name':session['user']})
+    
+    
+# returns post data using the query provided
+@app.route('/getPosts', methods=['POST', 'GET'])
+def getPosts():
+    query = str(request.args.get('query'))
+    
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    cursor.execute(query)
+    data = (cursor.fetchall())
+    
+    result = jsonify(data)
+    return result    
+    
     
 if __name__ == "__main__":
     app.run(host=getenv('IP', '0.0.0.0'), port=int(getenv('PORT', 8080)))
