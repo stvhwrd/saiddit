@@ -95,3 +95,26 @@ CREATE TRIGGER create_time_post BEFORE INSERT ON Posts FOR EACH ROW
 
 CREATE TRIGGER create_time_comment BEFORE INSERT ON Comments FOR EACH ROW
     SET NEW.creation_time = NOW();
+
+INSERT INTO Accounts (username, password) VALUES ("bob","bob");
+INSERT INTO Accounts (username, password) VALUES ("sarah","sarah");
+INSERT INTO Accounts (username, password) VALUES ("james","james");
+INSERT INTO Accounts (username, password) VALUES ("testUserPleaseIgnore","test");
+INSERT INTO Accounts (username, password) VALUES ("yoda","yoda");
+
+INSERT INTO Subsaiddits (title, description, creator_key, front_page) VALUES ("news","testnews","yoda",1);
+INSERT INTO Subsaiddits (title, description, creator_key, front_page) VALUES ("movies","testmovies","yoda",1);
+INSERT INTO Subsaiddits (title, description, creator_key, front_page) VALUES ("ayyy","testayyy","sarah",0);
+INSERT INTO Subsaiddits (title, description, creator_key) VALUES ("all","testall","yoda");
+
+INSERT INTO Posts (title, url, subsaiddit, author_key) VALUES ("test1","www.google.com","news","yoda");
+INSERT INTO Posts (title, url, subsaiddit, author_key) VALUES ("test2","www.youtube.com","movies","sarah");
+INSERT INTO Posts (title, url, subsaiddit, author_key) VALUES ("test3","www.www.com.com","news","testUserPleaseIgnore");
+INSERT INTO Posts (title, url, subsaiddit, author_key) VALUES ("test4","www.yelp.com","ayyy","james");
+INSERT INTO Posts (title, url, subsaiddit, author_key) VALUES ("test5","www.google.com","all","yoda");
+
+INSERT INTO Posts (title, text, subsaiddit, author_key) VALUES ("test1","words","news","yoda");
+INSERT INTO Posts (title, text, subsaiddit, author_key) VALUES ("test2","abcdefg","movies","sarah");
+INSERT INTO Posts (title, text, subsaiddit, author_key) VALUES ("test3","gibberish","news","bob");
+INSERT INTO Posts (title, text, subsaiddit, author_key) VALUES ("test4","slightly longer gibberish","ayyy","yoda");
+INSERT INTO Posts (title, text, subsaiddit, author_key) VALUES ("test5","lol","all","james");
