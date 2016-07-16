@@ -76,7 +76,7 @@ CREATE TABLE Subscribes (
     FOREIGN KEY (subsaidd_id) REFERENCES Subsaiddits(title) ON DELETE CASCADE
 );
 
-CREATE TABLE Votes (
+CREATE TABLE PostVotes (
     user_id VARCHAR(255) NOT NULL,
     vote BOOLEAN NOT NULL,
     post_id INT NOT NULL,
@@ -84,6 +84,16 @@ CREATE TABLE Votes (
     PRIMARY KEY (user_id, post_id),
     FOREIGN KEY (user_id) REFERENCES Accounts(username) ON DELETE CASCADE,
     FOREIGN KEY (post_id) REFERENCES Posts(post_id) ON DELETE CASCADE
+);
+
+CREATE TABLE CommentVotes (
+    user_id VARCHAR(255) NOT NULL,
+    vote BOOLEAN NOT NULL,
+    comment_id INT NOT NULL,
+    
+    PRIMARY KEY (user_id, comment_id),
+    FOREIGN KEY (user_id) REFERENCES Accounts(username) ON DELETE CASCADE,
+    FOREIGN KEY (comment_id) REFERENCES Comments(post_id) ON DELETE CASCADE
 );
 
 /* Triggers for adding current time for certain insertions */
