@@ -93,7 +93,7 @@ CREATE TABLE CommentVotes (
     
     PRIMARY KEY (user_id, comment_id),
     FOREIGN KEY (user_id) REFERENCES Accounts(username) ON DELETE CASCADE,
-    FOREIGN KEY (comment_id) REFERENCES Comments(post_id) ON DELETE CASCADE
+    FOREIGN KEY (comment_id) REFERENCES Comments(comment_id) ON DELETE CASCADE
 );
 
 /* Triggers for adding current time for certain insertions */
