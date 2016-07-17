@@ -3,7 +3,7 @@ function getPosts(){
     $.ajax({
 		url: '/getPosts',
 		type: 'GET',
-		data: {'query':'SELECT * FROM Posts'},
+		data: {'query':'SELECT * FROM Posts LIMIT 12'},
 		async: false,
 		success: function(response){
 			val = response;

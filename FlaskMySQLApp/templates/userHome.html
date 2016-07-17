@@ -30,83 +30,85 @@
         <img src="../static/images/saiddit.png" alt="saiddit" height="36" width=auto>
       </div>
 
-      <div class="row marketing">
-        <div class="col-lg-6">
-          <h4>Column 1 Row 1</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+      <div>
+        <div class="container" id="post0"></div>
+        <div class="container" id="post1"></div>
+        <div class="container" id="post2"></div>
+        <div class="container" id="post3"></div>
+        <div class="container" id="post4"></div>
+        <div class="container" id="post5"></div>
+        <div class="container" id="post6"></div>
+        <div class="container" id="post7"></div>
+        <div class="container" id="post8"></div>
+        <div class="container" id="post9"></div>
+        <div class="container" id="post10"></div>
+        <div class="container" id="post11"></div>
 
-          <h4>Column 1 Row 2</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Column 1 Row 3</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-        </div>
-
-        <div class="col-lg-6">
-          <h4>Column 2 Row 1</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-          <h4>Column 2 Row 2</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Column 2 Row 3</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-        </div>
-
-		<div class="col-lg-6">
-          <h4>Column 1 Row 1</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-          <h4>Column 1 Row 2</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Column 1 Row 3</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-        </div>
-
-        <div class="col-lg-6">
-          <h4>Column 2 Row 1</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-          <h4>Column 2 Row 2</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Column 2 Row 3</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-        </div>
-
-		<div class="col-lg-6">
-          <h4>Column 1 Row 1</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-          <h4>Column 1 Row 2</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Column 1 Row 3</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-        </div>
-
-        <div class="col-lg-6">
-          <h4>Column 2 Row 1</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-          <h4>Column 2 Row 2</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-          <h4>Column 2 Row 3</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-        </div>
-      </div>
-
-      <footer class="footer">
-        <p>&copy; SSD 2016</p>
-      </footer>
+        <footer class="footer">
+          <p>&copy; SSD 2016</p>
+        </footer>
+    
     </div>
-    
     <script type="text/javascript">
-    
-      document.getElementById("name").innerHTML = getName();
+  
+      var i = 0;
       
+      //Sets the initial html for the posts
+      for(i = 0; i<12; i++){
+        var post = "<h3><span id=title" + i + "></span></h3>\
+                    <div class=\"panel panel-default\">\
+                      <div class=\"panel-heading\">Posted by <b id=user" + i + "></b> to <b id=sub" + i + "></b> <span id=vote" + i + " class=\"pull-right\"></span> <p></p> </div>\
+                      <div class=\"panel-body\"><span id=text" + i + "></span></div>\
+                    </div>";
+        document.getElementById("post"+i).innerHTML = post;
+      }
+      var data = getPosts();
+      
+      //Adds title data to page
+      var title = 'title';
+      
+      for(i = 0; i < data.length; i++ ){
+        title = title + String(i);
+        document.getElementById(title).innerHTML = data[i][3];
+        title = 'title';
+      }
+      
+      //Adds post content data to page
+      var text = 'text';
+      for(i = 0; i < data.length; i++ ){
+        text = text + String(i);
+        if(data[i][4] != null){
+          document.getElementById(text).innerHTML = data[i][4];
+        }else{
+           document.getElementById(text).innerHTML = data[i][5];
+        }
+        text = 'text';
+      }
+      
+      //Adds posted by username data to page
+      var user = 'user';
+      for(i = 0; i < data.length; i++ ){
+        user = user + String(i);
+        document.getElementById(user).innerHTML = data[i][9];
+        user = 'user';
+      }
+      
+      //Adds posted to subsaiddit data to page        
+      var sub = 'sub';
+      for(i = 0; i < data.length; i++ ){
+        sub = sub + String(i);
+        document.getElementById(sub).innerHTML = data[i][8];
+        sub = 'sub';
+      }
+      
+      //Adds voting data and buttons to page
+      var vote = 'vote';
+      for(i = 0; i < data.length; i++ ){
+        vote = vote + String(i);
+        document.getElementById(vote).innerHTML = "<button type=\"button\" class=\"btn btn-primary\"> upvote </button>  " + (parseInt(data[i][6])-parseInt(data[i][7])) + "  <button type=\"button\" class=\"btn btn-primary\">downvote</button>";
+        vote = 'vote';
+      }
+    
     </script>
   </body>
 </html>
