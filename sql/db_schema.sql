@@ -6,9 +6,8 @@ CREATE DATABASE saiddit;
 
 USE saiddit;
 
-
-
 /*  end */
+
 
 
 /** Create the tables */
@@ -167,7 +166,6 @@ INSERT INTO Accounts (username, password)
 VALUES ("luke", "luke");
 
 
-
 /* Subsaiddits */
 
 INSERT INTO Subsaiddits (title, description, creator_key, front_page)
@@ -216,7 +214,125 @@ INSERT INTO Posts (title, body, subsaiddit, author_key)
 VALUES ("test9", "slightly longer gibberish", "funny", "rudy");
 
 INSERT INTO Posts (title, body, subsaiddit, author_key)
-VALUES ("test10", "oilers will win the cup", "hockey", "paul");
+VALUES ("test10", "oilers will win the cup jk", "hockey", "paul");
+
+INSERT INTO Posts (title, body, subsaiddit, author_key)
+VALUES ("test11", "www.google.com", "news", "yoda");
 
 
-/*
+
+/* Comments */
+
+INSERT INTO Comments (body, parent_post_id, upvotes, downvotes, parent_message, commentor_id)
+VALUES ("I absolutely disagree with this", 7, 15, 4, NULL, "yoda");
+
+INSERT INTO Comments (body, parent_post_id, upvotes, downvotes, parent_message, commentor_id)
+VALUES ("This is hilarious", 3, 100, 900, NULL, "kobe");
+
+INSERT INTO Comments (body, parent_post_id, upvotes, downvotes, parent_message, commentor_id)
+VALUES ("I speak Latin. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac scelerisque velit. See?", 4, 1, 54, NULL, "james");
+
+INSERT INTO Comments (body, parent_post_id, upvotes, downvotes, parent_message, commentor_id)
+VALUES ("I don't usually agree with yoda, but here, I think he's right.", 7, 1, 0, 1, "sarah");
+
+INSERT INTO Comments (body, parent_post_id, upvotes, downvotes, parent_message, commentor_id)
+VALUES ("The Chicago Blackhawks, as good as they are, are undoubtedly one of the most underrated teams in the league.", 2, 1000, 0, NULL, "yoda");
+
+
+/* Favourites */
+
+INSERT INTO Favourites (user_id, post_id)
+VALUES ("yoda", 3);
+
+INSERT INTO Favourites (user_id, post_id)
+VALUES ("sarah", 3);
+
+INSERT INTO Favourites (user_id, post_id)
+VALUES ("sarah", 1);
+
+INSERT INTO Favourites (user_id, post_id)
+VALUES ("james", 4);
+
+INSERT INTO Favourites (user_id, post_id)
+VALUES ("kobe", 8);
+
+
+/* Friends */
+
+INSERT INTO Friends (user_id, friend_id)
+VALUES ("yoda", "sarah");
+
+INSERT INTO Friends (user_id, friend_id)
+VALUES ("yoda", "kobe");
+
+INSERT INTO Friends (user_id, friend_id)
+VALUES ("paul", "james");
+
+INSERT INTO Friends (user_id, friend_id)
+VALUES ("sidney", "sarah");
+
+INSERT INTO Friends (user_id, friend_id)
+VALUES ("luke", "yoda");
+
+
+/* Subscribes */
+
+INSERT INTO Subscribes (user_id, subsaidd_id)
+VALUES ("yoda", "hockey");
+
+INSERT INTO Subscribes (user_id, subsaidd_id)
+VALUES ("yoda", "movies");
+
+INSERT INTO Subscribes (user_id, subsaidd_id)
+VALUES ("yoda", "news");
+
+INSERT INTO Subscribes (user_id, subsaidd_id)
+VALUES ("kobe", "funny");
+
+INSERT INTO Subscribes (user_id, subsaidd_id)
+VALUES ("james", "news");
+
+INSERT INTO Subscribes (user_id, subsaidd_id)
+VALUES ("james", "funny");
+
+
+/* PostVotes */
+
+INSERT INTO PostVotes (user_id, vote, post_id)
+VALUES ("james", 1, 1);
+
+INSERT INTO PostVotes (user_id, vote, post_id)
+VALUES ("yoda", 1, 1);
+
+INSERT INTO PostVotes (user_id, vote, post_id)
+VALUES ("yoda", 0, 4);
+
+INSERT INTO PostVotes (user_id, vote, post_id)
+VALUES ("sarah", 0, 2);
+
+INSERT INTO PostVotes (user_id, vote, post_id)
+VALUES ("james", 1, 2);
+
+INSERT INTO PostVotes (user_id, vote, post_id)
+VALUES ("sarah", 0, 3);
+
+INSERT INTO PostVotes (user_id, vote, post_id)
+VALUES ("james", 0, 3);
+
+
+/* CommentVotes */
+
+INSERT INTO CommentVotes (user_id, vote, comment_id)
+VALUES ("yoda", 1, 1);
+
+INSERT INTO CommentVotes (user_id, vote, comment_id)
+VALUES ("sarah", 1, 2);
+
+INSERT INTO CommentVotes (user_id, vote, comment_id)
+VALUES ("james", 1, 1);
+
+INSERT INTO CommentVotes (user_id, vote, comment_id)
+VALUES ("kobe", 1, 2);
+
+INSERT INTO CommentVotes (user_id, vote, comment_id)
+VALUES ("bob", 1, 1);
