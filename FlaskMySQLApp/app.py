@@ -46,6 +46,12 @@ def logOut():
     return redirect('/')
 
 
+# handles /comments URL to go to the comments of a post
+@app.route('/comments')
+def comments():
+    return render_template('comments.html')
+
+
 # handles /login URL to go to verify password and username, and go to the users front page
 @app.route('/logIn', methods=['POST'])
 def logIn():
@@ -134,6 +140,20 @@ def getPosts():
     result = jsonify(data)
     return result    
     
+    
+# returns comment data using the query provided
+@app.route('/getComments', methods=['POST', 'GET'])
+def getComments():
+    query = str(request.args.get('query'))
+    
+    conn = mysql.connect()
+    cursor = conn.cursor()
+    cursor.execute(query)
+    data = (cursor.fetchall())
+    
+    result = jsonify(data)
+    return result    
+        
     
 if __name__ == "__main__":
     app.run(host=getenv('IP', '0.0.0.0'), port=int(getenv('PORT', 8080)))

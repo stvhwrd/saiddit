@@ -27,6 +27,7 @@ function getName(){
 	return val;
 }
 
+//gets the first 12 posts returns the posts using JSON
 function getPosts(){
 	var val;
     $.ajax({

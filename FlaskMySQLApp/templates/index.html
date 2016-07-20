@@ -55,7 +55,7 @@
         
         //Sets the initial html for the posts
         for(i = 0; i<12; i++){
-          var post = "<h3><span id=title" + i + "></span></h3>\
+          var post = "<a id="+(i+1)+" href=\"/comments\" onclick=\"location.href=this.href+'?post_id='+this.id;return false;\"><h3><span id=title" + i + "></span></h3></a>\
                       <div class=\"panel panel-default\">\
                         <div class=\"panel-heading\">Posted by <b id=user" + i + "></b> to <b id=sub" + i + "></b> <span id=vote" + i + " class=\"pull-right\"></span> <p></p> </div>\
                         <div class=\"panel-body\"><span id=text" + i + "></span></div>\
@@ -63,7 +63,7 @@
           document.getElementById("post"+i).innerHTML = post;
         }
         var data = getPosts();
-        
+  
         //Adds title data to page
         var title = 'title';
         

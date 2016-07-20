@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>saiddit: the back page of the internet</title>
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+    <link href="../static/css/signup.css" rel="stylesheet">
+
+    <script src="../static/js/jquery-1.11.2.js"></script>
+     <script src="../static/js/comments.js"></script>
+
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="navbar navbar-default navbar-fixed-top">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation"><a href="/">Home</a></li>
+		        <li role="presentation"><a href="/showLogIn">Log In</a></li>
+		        <li role="presentation"><a href="/showSignUp">Sign Up</a></li>
+          </ul>
+        </nav>
+        <img src="../static/images/saiddit.png" alt="saiddit" height="36" width=auto>
+      </div>
+
+      <div>
+        <div class=container id=post>
+          <div id=title></div>
+          <div>
+            <div class="panel panel-default">
+              <div class="panel-heading">Posted by <b id="user"></b> to <b id="subsaiddit"></b> <span id="votes" class="pull-right"></span> <p></p> </div>
+              <div class="panel-body"><span id="content"></span></div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="footer">
+          <p>&copy; SSD 2016</p>
+        </footer>
+    
+    </div>
+    <script type="text/javascript">
+      var parameter = window.location.search.substring(1);
+      parameter = parameter.split("=");
+      parameter = parameter[1];
+      
+      var post = getPost(parameter);
+      var comments = getComments(parameter);
+      
+      document.getElementById('title').innerHTML = "<font size=\"7\">"+post[0][3]+"</font>";
+
+      document.getElementById('user').innerHTML = post[0][3];
+      document.getElementById('subsaiddit').innerHTML = post[0][9];
+      document.getElementById('votes').innerHTML = "   " + (post[0][6]-post[0][7]) + "   ";
+      document.getElementById('content').innerHTML = ((post[0][4] != null) ? post[0][4] : post[0][5]);
+    </script>
+  </body>
+</html>
+
+
+
