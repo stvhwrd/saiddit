@@ -160,6 +160,36 @@ def getComments():
     result = jsonify(data)
     return result    
         
+        
+# allows a user to comment and adds comment to database*
+@app.route('/comment', methods=['POST','GET'])
+def comment():
+    try:
+        text = request.form['comment']
+        post_id = request.form['post_id']
+        user_id = session['user']
+        data = (text,post_id,user_id)
+        
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        
+        cursor.execute("INSERT INTO Comments (body, parent_post_id, commentor_id) VALUES (%s,%s,%s)", data)
+        
+        info = cursor.fetchone()
+        if info is None:
+            conn.commit()
+            return json.dumps({'html': '<span>Enter the required fields</span>'})
+        else:
+            return json.dumps({'error': str(data[0])})
+            
+    except Exception as e:
+        sys.stderr.write(str(e))
+        return json.dumps({'error': str(e)})
+    finally:
+        cursor.close()
+        conn.close() 
+
+    
     
 if __name__ == "__main__":
     app.run(host=getenv('IP', '0.0.0.0'), port=int(getenv('PORT', 8080)))

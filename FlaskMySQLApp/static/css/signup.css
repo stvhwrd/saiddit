@@ -41,3 +41,7 @@ body {
 .tab {
     margin-left: 40px;
 }
+
+.non-bootstrap {
+    padding: 15px;
+}

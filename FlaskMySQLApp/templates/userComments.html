@@ -42,6 +42,13 @@
           </div>
         </div>
         <div class=container id=comments></div>
+        <form method='post' class="tab non-bootstrap" action="/comment">
+          
+          Comment:<br />
+          <textarea name='comment' id='comment' rows="6" cols="30"></textarea><br />
+          <input type='hidden' name='post_id' id='post_id' value="" />
+          <button id="btnSubmitComment" class="btn btn-primary" type="button">Submit</button>
+        </form>
         
         <footer class="footer">
           <p>&copy; SSD 2016</p>
@@ -64,6 +71,7 @@
         document.getElementById('subsaiddit').innerHTML = post[0][8];
         document.getElementById('votes').innerHTML = "   " + (post[0][6]-post[0][7]) + "   ";
         document.getElementById('content').innerHTML = ((post[0][4] != null) ? post[0][4] : post[0][5]);
+        document.getElementById('post_id').value = post[0][0];
         
         var comments = getComments(parameter);
         var commentLength = comments.length;
