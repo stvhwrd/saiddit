@@ -137,7 +137,7 @@ def getName():
 @app.route('/getPosts', methods=['POST', 'GET'])
 def getPosts():
     query = str(request.args.get('query'))
-    
+    sys.stderr.write(str(query)+"\n")
     conn = mysql.connect()
     cursor = conn.cursor()
     cursor.execute(query)
