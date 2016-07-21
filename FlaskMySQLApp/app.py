@@ -168,7 +168,7 @@ def comment():
         text = request.form['comment']
         post_id = request.form['post_id']
         user_id = session['user']
-        data = (text,post_id,user_id)
+        data = (text, post_id, user_id)
         
         conn = mysql.connect()
         cursor = conn.cursor()

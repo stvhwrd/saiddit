@@ -3,7 +3,7 @@ function getPosts(){
     $.ajax({
 		url: '/getPosts',
 		type: 'GET',
-		data: {'query':'SELECT * FROM Posts LIMIT 12'},
+		data: {'query':'SELECT * FROM Posts JOIN (SELECT * FROM Subsaiddits WHERE front_page) AS sub ON subsaiddit=sub.title ORDER BY (upvotes-downvotes) DESC LIMIT 12'},
 		async: false,
 		success: function(response){
 			val = response;
