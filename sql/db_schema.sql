@@ -52,8 +52,8 @@ CREATE TABLE Comments (
     creation_time DATETIME,
     body text,
     parent_post_id INT NOT NULL,
-    upvotes INT,
-    downvotes INT,
+    upvotes INT DEFAULT 0,
+    downvotes INT DEFAULT 0,
     parent_message INT,
     commentor_id VARCHAR(255) NOT NULL,
 
@@ -186,39 +186,38 @@ VALUES ("hockey", "go bar down", "sidney", 0);
 
 /* Posts */
 
-INSERT INTO Posts (title, url, subsaiddit, author_key)
-VALUES ("test1", "www.google.com", "news", "yoda");
+INSERT INTO Posts (title, url, subsaiddit, author_key, upvotes, downvotes)
+VALUES ("test1", "www.google.com", "news", "yoda", 2, 0);
 
-INSERT INTO Posts (title, url, subsaiddit, author_key)
-VALUES ("test2", "www.youtube.com", "movies", "sarah");
+INSERT INTO Posts (title, url, subsaiddit, author_key, upvotes, downvotes)
+VALUES ("test2", "www.youtube.com", "movies", "sarah", 1, 1);
 
-INSERT INTO Posts (title, url, subsaiddit, author_key)
-VALUES ("test3", "las vegas gets a team", "hockey", "kobe");
+INSERT INTO Posts (title, url, subsaiddit, author_key, upvotes, downvotes)
+VALUES ("test3", "las vegas gets a team", "hockey", "kobe", 0, 2);
 
-INSERT INTO Posts (title, url, subsaiddit, author_key)
-VALUES ("test4", "www.yelp.com", "funny", "james");
+INSERT INTO Posts (title, url, subsaiddit, author_key, upvotes, downvotes)
+VALUES ("test4", "www.yelp.com", "funny", "james", 0, 1);
 
-INSERT INTO Posts (title, url, subsaiddit, author_key)
-VALUES ("test5", "www.google.com", "all", "yoda");
+INSERT INTO Posts (title, url, subsaiddit, author_key, upvotes, downvotes)
+VALUES ("test5", "www.google.com", "all", "yoda", 0, 0);
 
-INSERT INTO Posts (title, body, subsaiddit, author_key)
-VALUES ("test6", "words", "news", "yoda");
+INSERT INTO Posts (title, body, subsaiddit, author_key, upvotes, downvotes)
+VALUES ("test6", "words", "news", "yoda", 0, 0);
 
-INSERT INTO Posts (title, body, subsaiddit, author_key)
-VALUES ("test7", "the green mile", "movies", "sarah");
+INSERT INTO Posts (title, body, subsaiddit, author_key, upvotes, downvotes)
+VALUES ("test7", "the green mile", "movies", "sarah", 0, 0);
 
-INSERT INTO Posts (title, body, subsaiddit, author_key)
-VALUES ("test8", "gibberish", "news", "bob");
+INSERT INTO Posts (title, body, subsaiddit, author_key, upvotes, downvotes)
+VALUES ("test8", "gibberish", "news", "bob", 0, 0);
 
-INSERT INTO Posts (title, body, subsaiddit, author_key)
-VALUES ("test9", "slightly longer gibberish", "funny", "rudy");
+INSERT INTO Posts (title, body, subsaiddit, author_key, upvotes, downvotes)
+VALUES ("test9", "slightly longer gibberish", "funny", "rudy", 0, 0);
 
-INSERT INTO Posts (title, body, subsaiddit, author_key)
-VALUES ("test10", "oilers will win the cup jk", "hockey", "paul");
+INSERT INTO Posts (title, body, subsaiddit, author_key, upvotes, downvotes)
+VALUES ("test10", "oilers will win the cup jk", "hockey", "paul", 0, 0);
 
-INSERT INTO Posts (title, body, subsaiddit, author_key)
-VALUES ("test11", "www.google.com", "news", "yoda");
-
+INSERT INTO Posts (title, body, subsaiddit, author_key, upvotes, downvotes)
+VALUES ("test11", "www.google.com", "news", "yoda", 0, 0);
 
 
 /* Comments */

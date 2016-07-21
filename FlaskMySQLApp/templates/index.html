@@ -11,6 +11,7 @@
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
 
     <link href="../static/css/signup.css" rel="stylesheet">
+    <link href="../static/css/index.css" rel="stylesheet">
 
     <script src="../static/js/jquery-1.11.2.js"></script>
     <script src="../static/js/index.js"></script>
@@ -30,7 +31,7 @@
         <img src="../static/images/saiddit.png" alt="saiddit" height="36" width=auto>
       </div>
 
-      <div>
+      <div >
         <div class="container" id="post0"></div>
         <div class="container" id="post1"></div>
         <div class="container" id="post2"></div>
@@ -48,7 +49,7 @@
           <p>&copy; SSD 2016</p>
         </footer>
     
-    </div>
+      </div>
       <script type="text/javascript">
     
         var i = 0;
@@ -56,7 +57,7 @@
         //Sets the initial html for the posts
         for(i = 0; i<12; i++){
           var post = "<a id="+(i+1)+" href=\"/comments\" onclick=\"location.href=this.href+'?post_id='+this.id;return false;\"><h3><span id=title" + i + "></span></h3></a>\
-                      <div class=\"panel panel-default\">\
+                      <div class=\"panel panel-info\">\
                         <div class=\"panel-heading\">Posted by <b id=user" + i + "></b> to <b id=sub" + i + "></b> <span id=vote" + i + " class=\"pull-right\"></span> <p></p> </div>\
                         <div class=\"panel-body\"><span id=text" + i + "></span></div>\
                       </div>";

@@ -52,6 +52,12 @@ def comments():
     return render_template('comments.html')
 
 
+# handles /userComments URL to go to the comments of a post
+@app.route('/userComments')
+def userComments():
+    return render_template('userComments.html')
+
+
 # handles /login URL to go to verify password and username, and go to the users front page
 @app.route('/logIn', methods=['POST'])
 def logIn():
