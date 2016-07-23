@@ -13,7 +13,7 @@
     <link href="../static/css/signup.css" rel="stylesheet">
 
     <script src="../static/js/jquery-1.11.2.js"></script>
-     <script src="../static/js/comments.js"></script>
+     <script src="../static/js/general.js"></script>
 
   </head>
 
@@ -49,32 +49,10 @@
     
     </div>
     <script type="text/javascript">
-      var parameter = window.location.search.substring(1);
-      parameter = parameter.split("=");
-      parameter = parameter[1];
+    
+      addParentPost();
+      addComments();
       
-      //Populates post infomation
-      var post = getPost(parameter);
-      document.getElementById('title').innerHTML = post[0][3];
-      document.getElementById('user').innerHTML = post[0][9];
-      document.getElementById('subsaiddit').innerHTML = post[0][8];
-      document.getElementById('votes').innerHTML = "   " + (post[0][6]-post[0][7]) + "   ";
-      document.getElementById('content').innerHTML = ((post[0][4] != null) ? post[0][4] : post[0][5]);
-      
-      var comments = getComments(parameter);
-      var commentLength = comments.length;
-      var commentHTML = "";
-      var i = 0;
-      for(i = 0; i<commentLength; i++){
-        commentHTML += "<div class='tab'>\
-                          <div class='panel panel-default'>\
-                            <div class=panel-heading>Commented by <b>"+comments[i][7]+"</b><span class=pull-right>"+(comments[i][4]-comments[i][5])+"</span></div>\
-                            <div class=panel-body>"+comments[i][2]+"</div>\
-                            <div replyToId"+comments[i][0]+"></div>\
-                          </div>\
-                        </div>";
-      }
-      document.getElementById("comments").innerHTML = commentHTML;
     </script>
   </body>
 </html>

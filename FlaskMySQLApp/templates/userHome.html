@@ -13,7 +13,9 @@
     <link href="../static/css/signup.css" rel="stylesheet">
 
     <script src="../static/js/jquery-1.11.2.js"></script>
-     <script src="../static/js/userHome.js"></script>
+    <script src="../static/js/user.js"></script>
+    <script src="../static/js/general.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
   </head>
 
@@ -50,69 +52,11 @@
     
     </div>
     <script type="text/javascript">
-  
-      var i = 0;
-      
-      //Sets the initial html for the posts
-      for(i = 0; i<12; i++){
-          var post = "<a id="+(i+1)+" href=\"/userComments\" onclick=\"location.href=this.href+'?post_id='+this.id;return false;\"><h3><span id=title" + i + "></span></h3></a>\
-                      <div class=\"panel panel-info\">\
-                        <div class=\"panel-heading\">Posted by <b id=user" + i + "></b> to <b id=sub" + i + "></b> <span id=vote" + i + " class=\"pull-right\"></span> <p></p> </div>\
-                        <div class=\"panel-body\"><span id=text" + i + "></span></div>\
-                      </div>";
-        document.getElementById("post"+i).innerHTML = post;
-      }
-      
-      //Adds the users name to the top of the page
-      document.getElementById("name").innerHTML = getName();
-      
-      var data = getPosts();
-      
-      //Adds title data to page
-      var title = 'title';
-      
-      for(i = 0; i < data.length; i++ ){
-        title = title + String(i);
-        document.getElementById(title).innerHTML = data[i][3];
-        title = 'title';
-      }
-      
-      //Adds post content data to page
-      var text = 'text';
-      for(i = 0; i < data.length; i++ ){
-        text = text + String(i);
-        if(data[i][4] != null){
-          document.getElementById(text).innerHTML = data[i][4];
-        }else{
-           document.getElementById(text).innerHTML = data[i][5];
-        }
-        text = 'text';
-      }
-      
-      //Adds posted by username data to page
-      var user = 'user';
-      for(i = 0; i < data.length; i++ ){
-        user = user + String(i);
-        document.getElementById(user).innerHTML = data[i][9];
-        user = 'user';
-      }
-      
-      //Adds posted to subsaiddit data to page        
-      var sub = 'sub';
-      for(i = 0; i < data.length; i++ ){
-        sub = sub + String(i);
-        document.getElementById(sub).innerHTML = data[i][8];
-        sub = 'sub';
-      }
-      
-      //Adds voting data and buttons to page
-      var vote = 'vote';
-      for(i = 0; i < data.length; i++ ){
-        vote = vote + String(i);
-        document.getElementById(vote).innerHTML = "<button type=\"button\" class=\"btn btn-primary\"> upvote </button>  " + (parseInt(data[i][6])-parseInt(data[i][7])) + "  <button type=\"button\" class=\"btn btn-primary\">downvote</button>";
-        vote = 'vote';
-      }
     
+      addName();
+      addSignedInPosts();
+      addSubsaiddits();
+      
     </script>
   </body>
 </html>

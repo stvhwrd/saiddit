@@ -37,8 +37,14 @@ def showLogIn():
 @app.route('/userHome')
 def userHome():
     return render_template('userHome.html')
-
-
+    
+    
+# handles /subsaiddits URL to go to the unlogged in subsaiddit page
+@app.route('/subsaiddits')
+def subsaiddits():
+    return render_template('subsaiddits.html')
+    
+    
 # handles /logOut URL to log out of an account
 @app.route('/logOut')
 def logOut():
@@ -132,23 +138,8 @@ def signUp():
 def getName():
     return  json.dumps({'result': 'success', 'name':session['user']})
     
-    
-# returns post data using the query provided
-@app.route('/getPosts', methods=['POST', 'GET'])
-def getPosts():
-    query = str(request.args.get('query'))
-    sys.stderr.write(str(query)+"\n")
-    conn = mysql.connect()
-    cursor = conn.cursor()
-    cursor.execute(query)
-    data = (cursor.fetchall())
-    
-    result = jsonify(data)
-    return result    
-    
-    
-# returns comment data using the query provided
-@app.route('/getComments', methods=['POST', 'GET'])
+# returns data fron the provided query
+@app.route('/getQuery', methods=['POST', 'GET'])
 def getComments():
     query = str(request.args.get('query'))
     
