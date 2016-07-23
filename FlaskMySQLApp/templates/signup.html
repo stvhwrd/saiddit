@@ -15,6 +15,7 @@
     <script src="../static/js/jquery-1.11.2.js"></script>
 
     <script src="../static/js/general.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 
   </head>
@@ -28,6 +29,14 @@
             <li role="presentation" ><a href="/">Home</a></li>
             <li role="presentation"><a href="showLogIn">Log In</a></li>
             <li role="presentation" class="active"><a href="#">Sign Up</a></li>
+		        <li>
+  		        <div class="dropdown">
+                <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">Subsaiddits<span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <span id="subs"></span>
+                </ul>
+              </div>
+            </li>    
           </ul>
         </nav>
         <img src="/static/images/saiddit.png" alt="saiddit" height="36" width=auto>
@@ -49,13 +58,14 @@
           <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button">Sign up</button>
         </form>
       </div>
-
-
-
-      <footer class="footer">
-        <p>&copy; SSD 2016</p>
-      </footer>
-
-    </div>
+        <footer class="footer">
+          <p>&copy; SSD 2016</p>
+        </footer>
+      </div>
+      <script type="text/javascript">
+            
+        addSubsaiddits();
+        
+      </script>   
   </body>
 </html>

@@ -14,7 +14,8 @@
     <link href="../static/css/index.css" rel="stylesheet">
 
     <script src="../static/js/jquery-1.11.2.js"></script>
-    <script src="../static/js/index.js"></script>
+    <script src="../static/js/general.js"></script>
+    
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
   </head>
@@ -29,7 +30,7 @@
 		        <li role="presentation"><a href="/showSignUp">Sign Up</a></li>
 		        <li>
   		        <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example<span class="caret"></span></button>
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><span id="subsaiddit_name"></span><span class="caret"></span></button>
                 <ul class="dropdown-menu">
                   <span id="subs"></span>
                 </ul>
@@ -61,6 +62,10 @@
       </div>
       <script type="text/javascript">
             
+        addSubsaidditName();
+        addSubsaiddits();
+        addSubsaidditPosts();
+        
       </script>
   </body>
 </html>

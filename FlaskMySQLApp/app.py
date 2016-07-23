@@ -43,7 +43,14 @@ def userHome():
 @app.route('/subsaiddits')
 def subsaiddits():
     return render_template('subsaiddits.html')
+
+
+# handles /userSubsaiddits URL to go to the unlogged in subsaiddit page
+@app.route('/userSubsaiddits')
+def userSubsaiddits():
+    return render_template('userSubsaiddits.html')
     
+
     
 # handles /logOut URL to log out of an account
 @app.route('/logOut')

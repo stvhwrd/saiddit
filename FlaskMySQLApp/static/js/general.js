@@ -69,8 +69,12 @@ function addSubsaiddits(){
     var subsaiddits = getSubsaiddits();
     var subHTML = "";
     for(i = 0; i < subsaiddits.length; i++){
-      subHTML += "<li><a id="+subsaiddits[i][0]+" href='/subsaiddits' onclick=\"location.href=this.href+'?subsaiddit_id='+this.id;return false;\">"+subsaiddits[i][0]+"</a></li>";
-    }
+        if(subsaiddits[i][4]){
+            subHTML += "<li><a id="+subsaiddits[i][0]+" href='/subsaiddits' onclick=\"location.href=this.href+'?subsaiddit_id='+this.id;return false;\"><b>"+subsaiddits[i][0]+"</b></a></li>";
+        }else{
+            subHTML += "<li><a id="+subsaiddits[i][0]+" href='/subsaiddits' onclick=\"location.href=this.href+'?subsaiddit_id='+this.id;return false;\">"+subsaiddits[i][0]+"</a></li>";
+        }
+      }
     document.getElementById("subs").innerHTML = subHTML;
 }
 
@@ -110,6 +114,102 @@ function addComments(){
                     </div>";
     }
     document.getElementById("comments").innerHTML = commentHTML;
+}
+
+//adds the current subsaiddit name to the dropdown menu
+function addSubsaidditName() {
+    var parameter = window.location.search.substring(1);
+    parameter = parameter.split("=");
+    parameter = parameter[1];
+    document.getElementById("subsaiddit_name").innerHTML = parameter;
+}
+
+//adds the current subsaiddit name to the dropdown menu
+function addSubsaidditPosts() {
+    var parameter = window.location.search.substring(1);
+    parameter = parameter.split("=");
+    parameter = parameter[1];
+    
+    var i = 0;
+
+    var data = getSubsaidditPosts(parameter);
+    
+    //Sets the initial html for the posts
+    for(i = 0; i<data.length; i++){
+      var temp = data[i][0];
+      var post = "<a id="+temp+" href=\"/comments\" onclick=\"location.href=this.href+'?post_id='+this.id;return false;\"><h3><span id=title" + i + "></span></h3></a>\
+                  <div class=\"panel panel-info\">\
+                    <div class=\"panel-heading\">Posted by <b id=user" + i + "></b> to <b id=sub" + i + "></b> <span id=vote" + i + " class=\"pull-right\"></span> <p></p> </div>\
+                    <div class=\"panel-body\"><span id=text" + i + "></span></div>\
+                  </div>";
+      document.getElementById("post"+i).innerHTML = post;
+    }
+    
+    //Adds title data to page
+    var title = 'title';
+    for(i = 0; i < data.length; i++ ){
+      title = title + String(i);
+      document.getElementById(title).innerHTML = data[i][3];
+      title = 'title';
+    }
+    
+    //Adds post content data to page
+    var text = 'text';
+    for(i = 0; i < data.length; i++ ){
+      text = text + String(i);
+      if(data[i][4] != null){
+        document.getElementById(text).innerHTML = data[i][4];
+      }else{
+         document.getElementById(text).innerHTML = data[i][5];
+      }
+      text = 'text';
+    }
+    
+    //Adds posted by username data to page
+    var user = 'user';
+    for(i = 0; i < data.length; i++ ){
+      user = user + String(i);
+      document.getElementById(user).innerHTML = data[i][9];
+      user = 'user';
+    }
+    
+    //Adds posted to subsaiddit data to page        
+    var sub = 'sub';
+    for(i = 0; i < data.length; i++ ){
+      sub = sub + String(i);
+      document.getElementById(sub).innerHTML = data[i][8];
+      sub = 'sub';
+    }
+    
+    //Adds voting data to page
+    var vote = 'vote';
+    for(i = 0; i < data.length; i++ ){
+      vote = vote + String(i);
+      document.getElementById(vote).innerHTML = "   " + (parseInt(data[i][6])-parseInt(data[i][7])) + "   ";
+      vote = 'vote';
+    }
+}
+
+//returns the data for the top 12 posts from a particular subsaiddit
+function getSubsaidditPosts(subsaiddit_id){
+    var val;
+    var query = "SELECT Posts.post_id, Posts.publish_time, Posts.edit_time, Posts.title, Posts.url, Posts.body, Posts.upvotes, Posts.downvotes, Posts.subsaiddit, Posts.author_key FROM Posts JOIN Subsaiddits ON subsaiddit=Subsaiddits.title WHERE Subsaiddits.title='"+subsaiddit_id+"' ORDER BY (upvotes-downvotes) DESC LIMIT 12";
+    $.ajax({
+		url: '/getQuery',
+		type: 'GET',
+		
+		data: {'query':query},
+		async: false,
+		success: function(response){
+			val = response;
+			//console.log(response);
+		},
+		error: function(error){
+			console.log(error);
+			return "error";
+		}
+	});
+	return val;
 }
 
 //returns the post data from the server
@@ -256,3 +356,4 @@ $(function(){
 		});
 	});
 });
+

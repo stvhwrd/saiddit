@@ -7,14 +7,16 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    
     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
 
     <link href="../static/css/signup.css" rel="stylesheet">
+    <link href="../static/css/index.css" rel="stylesheet">
 
     <script src="../static/js/jquery-1.11.2.js"></script>
-    <script src="../static/js/user.js"></script>
     <script src="../static/js/general.js"></script>
+    <script src="../static/js/user.js"></script>
+    
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
   </head>
@@ -25,11 +27,12 @@
         <nav>
           <ul class="nav nav-pills pull-right">
             <li role="presentation"><span id=name></span></li>
-            <li role="presentation" class="active"><a href="#">Home</a></li>
-		        <li role="presentation"><a href="/logOut">Log Out</a></li>
-		        <li>
-  		        <div class="dropdown">
-                <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">Subsaiddits<span class="caret"></span></button>
+            <li role="presentation"><a href="/">Home</a></li>
+	      	<li role="presentation"><a href="/showLogIn">Log In</a></li>
+	        <li role="presentation"><a href="/showSignUp">Sign Up</a></li>
+	        <li>
+      	        <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><span id="subsaiddit_name"></span><span class="caret"></span></button>
                 <ul class="dropdown-menu">
                   <span id="subs"></span>
                 </ul>
@@ -40,7 +43,7 @@
         <img src="../static/images/saiddit.png" alt="saiddit" height="36" width=auto>
       </div>
 
-      <div>
+      <div >
         <div class="container" id="post0"></div>
         <div class="container" id="post1"></div>
         <div class="container" id="post2"></div>
@@ -58,14 +61,15 @@
           <p>&copy; SSD 2016</p>
         </footer>
     
-    </div>
-    <script type="text/javascript">
-    
-      addName();
-      addSignedInPosts();
-      addSignedInSubsaiddits();
-      
-    </script>
+      </div>
+      <script type="text/javascript">
+        
+        addName();
+        addSubsaidditName();
+        addSignedInSubsaiddits();
+        addSignedInSubsaidditPosts();
+        
+      </script>
   </body>
 </html>
 

@@ -13,7 +13,8 @@
     <link href="../static/css/signup.css" rel="stylesheet">
 
     <script src="../static/js/jquery-1.11.2.js"></script>
-     <script src="../static/js/general.js"></script>
+    <script src="../static/js/general.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
   </head>
 
@@ -25,6 +26,14 @@
             <li role="presentation"><a href="/">Home</a></li>
 		        <li role="presentation"><a href="/showLogIn">Log In</a></li>
 		        <li role="presentation"><a href="/showSignUp">Sign Up</a></li>
+		        <li>
+  		        <div class="dropdown">
+                <button class="btn btn-link dropdown-toggle" type="button" data-toggle="dropdown">Subsaiddits<span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <span id="subs"></span>
+                </ul>
+              </div>
+            </li>		        
           </ul>
         </nav>
         <img src="../static/images/saiddit.png" alt="saiddit" height="36" width=auto>
@@ -49,7 +58,8 @@
     
     </div>
     <script type="text/javascript">
-    
+      
+      addSubsaiddits();
       addParentPost();
       addComments();
       

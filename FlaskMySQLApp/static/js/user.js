@@ -106,9 +106,25 @@ function addSignedInPosts(){
     var vote = 'vote';
     for(i = 0; i < data.length; i++ ){
       vote = vote + String(i);
-      document.getElementById(vote).innerHTML = "   " + (parseInt(data[i][6])-parseInt(data[i][7])) + "   ";
+      document.getElementById(vote).innerHTML = "<button type=\"button\" class=\"btn btn-primary\"> upvote </button>  " + (parseInt(data[i][6])-parseInt(data[i][7])) + "  <button type=\"button\" class=\"btn btn-primary\">downvote</button>";
       vote = 'vote';
     }
+}
+
+//adds subsaiddit names to dropdown for a signed in user
+function addSignedInSubsaiddits(){
+    var i = 0;
+    
+    var subsaiddits = getSubsaiddits();
+    var subHTML = "";
+    for(i = 0; i < subsaiddits.length; i++){
+        if(subsaiddits[i][4]){
+            subHTML += "<li><a id="+subsaiddits[i][0]+" href='/userSubsaiddits' onclick=\"location.href=this.href+'?subsaiddit_id='+this.id;return false;\"><b>"+subsaiddits[i][0]+"</b></a></li>";
+        }else{
+            subHTML += "<li><a id="+subsaiddits[i][0]+" href='/userSubsaiddits' onclick=\"location.href=this.href+'?subsaiddit_id='+this.id;return false;\">"+subsaiddits[i][0]+"</a></li>";
+        }
+      }
+    document.getElementById("subs").innerHTML = subHTML;
 }
 
 //adds parent post data in the comment page
@@ -125,4 +141,70 @@ function addSignedInParentPost(){
     document.getElementById('votes').innerHTML = "   " + (post[0][6]-post[0][7]) + "   ";
     document.getElementById('content').innerHTML = ((post[0][4] != null) ? post[0][4] : post[0][5]);
     document.getElementById('post_id').value = post[0][0];
+}
+
+//adds the current subsaiddit name to the dropdown menu
+function addSignedInSubsaidditPosts() {
+    var parameter = window.location.search.substring(1);
+    parameter = parameter.split("=");
+    parameter = parameter[1];
+    
+    var i = 0;
+
+    var data = getSubsaidditPosts(parameter);
+    
+    //Sets the initial html for the posts
+    for(i = 0; i<data.length; i++){
+      var temp = data[i][0];
+      var post = "<a id="+temp+" href=\"/comments\" onclick=\"location.href=this.href+'?post_id='+this.id;return false;\"><h3><span id=title" + i + "></span></h3></a>\
+                  <div class=\"panel panel-info\">\
+                    <div class=\"panel-heading\">Posted by <b id=user" + i + "></b> to <b id=sub" + i + "></b> <span id=vote" + i + " class=\"pull-right\"></span> <p></p> </div>\
+                    <div class=\"panel-body\"><span id=text" + i + "></span></div>\
+                  </div>";
+      document.getElementById("post"+i).innerHTML = post;
+    }
+    
+    //Adds title data to page
+    var title = 'title';
+    for(i = 0; i < data.length; i++ ){
+      title = title + String(i);
+      document.getElementById(title).innerHTML = data[i][3];
+      title = 'title';
+    }
+    
+    //Adds post content data to page
+    var text = 'text';
+    for(i = 0; i < data.length; i++ ){
+      text = text + String(i);
+      if(data[i][4] != null){
+        document.getElementById(text).innerHTML = data[i][4];
+      }else{
+         document.getElementById(text).innerHTML = data[i][5];
+      }
+      text = 'text';
+    }
+    
+    //Adds posted by username data to page
+    var user = 'user';
+    for(i = 0; i < data.length; i++ ){
+      user = user + String(i);
+      document.getElementById(user).innerHTML = data[i][9];
+      user = 'user';
+    }
+    
+    //Adds posted to subsaiddit data to page        
+    var sub = 'sub';
+    for(i = 0; i < data.length; i++ ){
+      sub = sub + String(i);
+      document.getElementById(sub).innerHTML = data[i][8];
+      sub = 'sub';
+    }
+    
+    //Adds voting data to page
+    var vote = 'vote';
+    for(i = 0; i < data.length; i++ ){
+      vote = vote + String(i);
+      document.getElementById(vote).innerHTML = "<button type=\"button\" class=\"btn btn-primary\"> upvote </button>  " + (parseInt(data[i][6])-parseInt(data[i][7])) + "  <button type=\"button\" class=\"btn btn-primary\">downvote</button>";
+      vote = 'vote';
+    }
 }
