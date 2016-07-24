@@ -219,7 +219,7 @@ function addSignedInSubsaidditPosts() {
     var vote = 'vote';
     for(i = 0; i < data.length; i++ ){
       vote = vote + String(i);
-      document.getElementById(vote).innerHTML = "<button type=\"button\" class=\"btn btn-primary\"> upvote </button>  " + (parseInt(data[i][6])-parseInt(data[i][7])) + "  <button type=\"button\" class=\"btn btn-primary\">downvote</button>";
+      document.getElementById(vote).innerHTML = "<button type=\"button\" onclick='upvotePost(this.value)' value='"+data[i][0]+"' class=\"btn btn-primary\"> upvote </button>  " + (parseInt(data[i][6])-parseInt(data[i][7])) + "  <button type=\"button\" onclick='downvotePost(this.value)' value='"+data[i][0]+"' class=\"btn btn-primary\">downvote</button>";
       vote = 'vote';
     }
 }
@@ -324,13 +324,7 @@ function upvotePost(post_id){
 		data: {'post_id':post_id},
 		type: 'POST',
 		success: function(response){
-			var json = JSON.parse(response)
-			if(json.result == "success"){
-				console.log("success");
-				window.location.href='userHome';
-			}else{
-				console.log(json.result)
-			}
+
 		},
 		error: function(error){
 			console.log(error);
@@ -346,13 +340,7 @@ function downvotePost(post_id){
 		data: {'post_id':post_id},
 		type: 'POST',
 		success: function(response){
-			var json = JSON.parse(response)
-			if(json.result == "success"){
-				console.log("success");
-				window.location.href='userHome';
-			}else{
-				console.log(json.result)
-			}
+
 		},
 		error: function(error){
 			console.log(error);
