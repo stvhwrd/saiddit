@@ -147,7 +147,7 @@ def getName():
     
 # returns data fron the provided query
 @app.route('/getQuery', methods=['POST', 'GET'])
-def getComments():
+def getQuery():
     query = str(request.args.get('query'))
     
     conn = mysql.connect()
@@ -198,15 +198,65 @@ def upvotePost():
         conn = mysql.connect()
         cursor = conn.cursor()
         
-        cursor.execute("INSERT INTO PostVotes (user_id, ost_id) VALUES (%s,%s)", data)
+        cursor.execute("SELECT * FROM PostVotes WHERE user_id=%s AND post_id=%s ",data)
+        info=cursor.fetchone()
         
-        info = cursor.fetchone()
-        if info is None:
+        if(info is None):
+            data = (user_id, post_id, 1)
+            cursor.execute("INSERT INTO PostVotes (user_id, post_id, vote) VALUES (%s,%s,%s)", data)
             conn.commit()
-            return json.dumps({'html': '<span>Enter the required fields</span>'})
-        else:
-            return json.dumps({'error': str(data[0])})
+            cursor.execute("UPDATE Posts SET upvotes=upvotes+1 WHERE post_id='"+post_id+"'")
+            conn.commit()
             
+            return json.dumps({'html': '<span>Enter the required fields</span>'})
+        elif(info[1] == 0):
+            cursor.execute("UPDATE Posts SET upvotes=upvotes+1 WHERE post_id='"+post_id+"'")
+            conn.commit()
+            cursor.execute("UPDATE PostVotes SET vote=1 WHERE post_id='"+post_id+"'")
+            conn.commit()
+            
+            return json.dumps({'html': '<span>Enter the required fields</span>'}) 
+        else:
+            return json.dumps({'html': '<span>Enter the required fields</span>'}) 
+
+    except Exception as e:
+        sys.stderr.write(str(e))
+        return json.dumps({'error': str(e)})
+    finally:
+        cursor.close()
+        conn.close() 
+        
+# allows a user downvote a post
+@app.route('/downvotePost', methods=['POST','GET'])
+def downvotePost():
+    try:
+        post_id = request.form['post_id']
+        user_id = session['user']
+        data = (user_id, post_id)
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        
+        cursor.execute("SELECT * FROM PostVotes WHERE user_id=%s AND post_id=%s ",data)
+        info=cursor.fetchone()
+        
+        if(info is None):
+            data = (user_id, post_id, 0)
+            cursor.execute("INSERT INTO PostVotes (user_id, post_id, vote) VALUES (%s,%s,%s)", data)
+            conn.commit()
+            cursor.execute("UPDATE Posts SET downvotes=downvotes+1 WHERE post_id='"+post_id+"'")
+            conn.commit()
+            
+            return json.dumps({'html': '<span>Enter the required fields</span>'})
+        elif(info[1] == 1):
+            cursor.execute("UPDATE Posts SET downvotes=downvotes+1 WHERE post_id='"+post_id+"'")
+            conn.commit()
+            cursor.execute("UPDATE PostVotes SET vote=0 WHERE post_id='"+post_id+"'")
+            conn.commit()
+            
+            return json.dumps({'html': '<span>Enter the required fields</span>'}) 
+        else:
+            return json.dumps({'html': '<span>Enter the required fields</span>'}) 
+
     except Exception as e:
         sys.stderr.write(str(e))
         return json.dumps({'error': str(e)})

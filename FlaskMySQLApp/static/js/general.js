@@ -121,7 +121,7 @@ function addSubsaidditName() {
     var parameter = window.location.search.substring(1);
     parameter = parameter.split("=");
     parameter = parameter[1];
-    document.getElementById("subsaiddit_name").innerHTML = parameter;
+    document.getElementById("subsaiddit_name").innerHTML = "Current Subsaiddit: "+parameter;
 }
 
 //adds the current subsaiddit name to the dropdown menu
