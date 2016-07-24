@@ -29,9 +29,9 @@ function addPosts(){
     var text = 'text';
     for(i = 0; i < data.length; i++ ){
       text = text + String(i);
-      if(data[i][4] != null){
+      if(data[i][4] != null && data[i][4] != ""){
         document.getElementById(text).innerHTML = data[i][4];
-      }else{
+      }else if(data[i][5] != null && data[i][5] != ""){
          document.getElementById(text).innerHTML = data[i][5];
       }
       text = 'text';
@@ -157,9 +157,9 @@ function addSubsaidditPosts() {
     var text = 'text';
     for(i = 0; i < data.length; i++ ){
       text = text + String(i);
-      if(data[i][4] != null){
+      if(data[i][4] != null && data[i][4] != ""){
         document.getElementById(text).innerHTML = data[i][4];
-      }else{
+      }else if(data[i][5] != null && data[i][5] != ""){
          document.getElementById(text).innerHTML = data[i][5];
       }
       text = 'text';

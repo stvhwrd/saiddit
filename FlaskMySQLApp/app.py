@@ -212,6 +212,8 @@ def upvotePost():
         elif(info[1] == 0):
             cursor.execute("UPDATE Posts SET upvotes=upvotes+1 WHERE post_id='"+post_id+"'")
             conn.commit()
+            cursor.execute("UPDATE Posts SET downvotes=downvotes-1 WHERE post_id='"+post_id+"'")
+            conn.commit()
             cursor.execute("UPDATE PostVotes SET vote=1 WHERE post_id='"+post_id+"'")
             conn.commit()
             
@@ -249,6 +251,8 @@ def downvotePost():
             return json.dumps({'html': '<span>Enter the required fields</span>'})
         elif(info[1] == 1):
             cursor.execute("UPDATE Posts SET downvotes=downvotes+1 WHERE post_id='"+post_id+"'")
+            conn.commit()
+            cursor.execute("UPDATE Posts SET upvotes=upvotes-1 WHERE post_id='"+post_id+"'")
             conn.commit()
             cursor.execute("UPDATE PostVotes SET vote=0 WHERE post_id='"+post_id+"'")
             conn.commit()
@@ -322,7 +326,42 @@ def unsubscribe():
         cursor.close()
         conn.close() 
 
+
+# allows a user to post and adds comment to database*
+@app.route('/post', methods=['POST','GET'])
+def post():
+    try:
+        body = request.form['post']
+        subsaiddit = request.form['subsaiddit']
+        title = request.form['title']
+        url = request.form['url']
+        user_id = session['user']
         
+        if((body == "" and url == "") or subsaiddit == "" or title == "" ):
+            return json.dumps({'html': '<span>Enter the required fields</span>'})
+
+        data = (title, body, url, user_id, subsaiddit)
+        
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        sys.stderr.write(str(data)+"\n")
+        cursor.execute("INSERT INTO Posts (title, body, url, author_key, subsaiddit) VALUES (%s,%s,%s,%s,%s)", data)
+        
+        info = cursor.fetchone()
+        if info is None:
+            conn.commit()
+            return json.dumps({'html': '<span>Enter the required fields</span>'})
+        else:
+            return json.dumps({'error': str(data[0])})
+            
+    except Exception as e:
+        sys.stderr.write(str(e))
+        return json.dumps({'error': str(e)})
+    finally:
+        cursor.close()
+        conn.close() 
+
+
 if __name__ == "__main__":
     app.run(host=getenv('IP', '0.0.0.0'), port=int(getenv('PORT', 8080)))
 

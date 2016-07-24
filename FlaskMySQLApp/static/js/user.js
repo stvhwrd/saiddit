@@ -44,6 +44,25 @@ $(function(){
 	});
 });
 
+//allows the user to submit a post to the server
+$(function(){
+	$('#btnSubmitPost').click(function(){
+		
+		//submits post
+		$.ajax({
+			url: '/post',
+			data: $('form').serialize(),
+			type: 'POST',
+			success: function(response){
+				console.log(response);
+			},
+			error: function(error){
+				console.log(error);
+			}
+		});
+	});
+});
+
 //Adds the users name to the top of the page
 function addName(){
     document.getElementById("name").innerHTML = getName();   
@@ -78,9 +97,9 @@ function addSignedInPosts(){
     var text = 'text';
     for(i = 0; i < data.length; i++ ){
       text = text + String(i);
-      if(data[i][4] != null){
+      if(data[i][4] != null && data[i][4] != ""){
         document.getElementById(text).innerHTML = data[i][4];
-      }else{
+      }else if(data[i][5] != null && data[i][5] != ""){
          document.getElementById(text).innerHTML = data[i][5];
       }
       text = 'text';
@@ -187,13 +206,13 @@ function addSignedInSubsaidditPosts() {
       title = 'title';
     }
     
-    //Adds post content data to page
+     //Adds post content data to page
     var text = 'text';
     for(i = 0; i < data.length; i++ ){
       text = text + String(i);
-      if(data[i][4] != null){
+      if(data[i][4] != null && data[i][4] != ""){
         document.getElementById(text).innerHTML = data[i][4];
-      }else{
+      }else if(data[i][5] != null && data[i][5] != ""){
          document.getElementById(text).innerHTML = data[i][5];
       }
       text = 'text';
