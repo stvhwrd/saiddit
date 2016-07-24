@@ -53,7 +53,7 @@ function addName(){
 function addSignedInPosts(){
     var i = 0;
 
-    var data = getPosts();
+    var data = getSignedInPosts();
     
     //Sets the initial html for the posts
     for(i = 0; i<data.length; i++){
@@ -116,14 +116,29 @@ function addSignedInSubsaiddits(){
     var i = 0;
     
     var subsaiddits = getSubsaiddits();
+    var userSubsaiddits = getUserSubsaiddits();
+    
     var subHTML = "";
+    for(i = 0; i < userSubsaiddits.length; i++){
+      subHTML += "<li><a id="+userSubsaiddits[i][0]+" href='/userSubsaiddits' onclick=\"location.href=this.href+'?subsaiddit_id='+this.id;return false;\"><b>"+userSubsaiddits[i][0]+"</b></a> <button id='btnUnsubscribe' value="+userSubsaiddits[i][0]+" type='button'  onclick='unsubscribe(this.value)' class='btn btn-default btn-xs'>Unsubscribe</button></li>";
+    }
+    
+    var skip = false;
+    var j = 0;
+    
     for(i = 0; i < subsaiddits.length; i++){
-        if(subsaiddits[i][4]){
-            subHTML += "<li><a id="+subsaiddits[i][0]+" href='/userSubsaiddits' onclick=\"location.href=this.href+'?subsaiddit_id='+this.id;return false;\"><b>"+subsaiddits[i][0]+"</b></a></li>";
-        }else{
-            subHTML += "<li><a id="+subsaiddits[i][0]+" href='/userSubsaiddits' onclick=\"location.href=this.href+'?subsaiddit_id='+this.id;return false;\">"+subsaiddits[i][0]+"</a></li>";
+      for(j = 0; j < userSubsaiddits.length; j++){
+        if(subsaiddits[i][0] == userSubsaiddits[j][0]){
+          skip = true;
         }
       }
+      if(skip){
+        
+      }else{
+        subHTML += "<li><a id="+subsaiddits[i][0]+" href='/userSubsaiddits' onclick=\"location.href=this.href+'?subsaiddit_id='+this.id;return false;\">"+subsaiddits[i][0]+"</a> <button value="+subsaiddits[i][0]+" type='button' onclick='subscribe(this.value)' class='btn btn-default btn-xs'>Subscribe</button></li>";
+      }
+      skip = false;
+    }
     document.getElementById("subs").innerHTML = subHTML;
 }
 
@@ -156,7 +171,7 @@ function addSignedInSubsaidditPosts() {
     //Sets the initial html for the posts
     for(i = 0; i<data.length; i++){
       var temp = data[i][0];
-      var post = "<a id="+temp+" href=\"/comments\" onclick=\"location.href=this.href+'?post_id='+this.id;return false;\"><h3><span id=title" + i + "></span></h3></a>\
+      var post = "<a id="+temp+" href=\"/userComments\" onclick=\"location.href=this.href+'?post_id='+this.id;return false;\"><h3><span id=title" + i + "></span></h3></a>\
                   <div class=\"panel panel-info\">\
                     <div class=\"panel-heading\">Posted by <b id=user" + i + "></b> to <b id=sub" + i + "></b> <span id=vote" + i + " class=\"pull-right\"></span> <p></p> </div>\
                     <div class=\"panel-body\"><span id=text" + i + "></span></div>\
@@ -208,3 +223,97 @@ function addSignedInSubsaidditPosts() {
       vote = 'vote';
     }
 }
+
+//returns the post data from the server
+function getSignedInPosts(){
+  var user = getName();
+  
+	var val;
+    $.ajax({
+		url: '/getQuery',
+		type: 'GET',
+		
+		//If the front page doesnt load right, try changing the query to this? SELECT * FROM Posts JOIN (SELECT * FROM Subsaiddits WHERE front_page) AS sub ON subsaiddit=sub.title ORDER BY (upvotes-downvotes) DESC LIMIT 12
+		data: {'query':'SELECT Posts.post_id, Posts.publish_time, Posts.edit_time, Posts.title, Posts.url, Posts.body, Posts.upvotes, Posts.downvotes, Posts.subsaiddit, Posts.author_key FROM Posts JOIN Subscribes ON Posts.subsaiddit=Subscribes.subsaidd_id WHERE Subscribes.user_id="'+user+'" ORDER BY (upvotes-downvotes) DESC LIMIT 12'},
+		async: false,
+		success: function(response){
+			val = response;
+			//console.log(response);
+		},
+		error: function(error){
+			console.log(error);
+			return "error";
+		}
+	});
+	return val;
+}
+
+//returns the users subscribed subsaiddits
+function getUserSubsaiddits(){
+  var user = getName();
+  
+	var val;
+    $.ajax({
+		url: '/getQuery',
+		type: 'GET',
+		
+		//If the front page doesnt load right, try changing the query to this? SELECT * FROM Posts JOIN (SELECT * FROM Subsaiddits WHERE front_page) AS sub ON subsaiddit=sub.title ORDER BY (upvotes-downvotes) DESC LIMIT 12
+		data: {'query':'SELECT Subsaiddits.title FROM Subsaiddits JOIN Subscribes ON Subsaiddits.title=Subscribes.subsaidd_id WHERE Subscribes.user_id="'+user+'"'},
+		async: false,
+		success: function(response){
+			val = response;
+			//console.log(response);
+		},
+		error: function(error){
+			console.log(error);
+			return "error";
+		}
+	});
+	return val;
+}
+
+//allows the user to unsubscribe from a subsaiddit
+function unsubscribe(subsaiddit){
+
+	$.ajax({
+		url: '/unsubscribe',
+		data: {'subsaiddit_id':subsaiddit},
+		type: 'POST',
+		success: function(response){
+			var json = JSON.parse(response)
+			if(json.result == "success"){
+				console.log("success");
+				window.location.href='userHome';
+			}else{
+				console.log(json.result)
+			}
+		},
+		error: function(error){
+			console.log(error);
+		}
+	});
+} 
+
+//allows the user to subscribe to a subsaiddit
+function subscribe(subsaiddit){
+
+	$.ajax({
+		url: '/subscribe',
+		data: {'subsaiddit_id':subsaiddit},
+		type: 'POST',
+		success: function(response){
+			var json = JSON.parse(response)
+			if(json.result == "success"){
+				console.log("success");
+				window.location.href='userHome';
+			}else{
+				console.log(json.result)
+			}
+		},
+		error: function(error){
+			console.log(error);
+		}
+	});
+} 
+
+		

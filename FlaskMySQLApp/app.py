@@ -187,7 +187,92 @@ def comment():
         cursor.close()
         conn.close() 
 
-    
-    
+
+# allows a user upvote a post
+@app.route('/upvotePost', methods=['POST','GET'])
+def upvotePost():
+    try:
+        post_id = request.form['post_id']
+        user_id = session['user']
+        data = (user_id, post_id)
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        
+        cursor.execute("INSERT INTO PostVotes (user_id, ost_id) VALUES (%s,%s)", data)
+        
+        info = cursor.fetchone()
+        if info is None:
+            conn.commit()
+            return json.dumps({'html': '<span>Enter the required fields</span>'})
+        else:
+            return json.dumps({'error': str(data[0])})
+            
+    except Exception as e:
+        sys.stderr.write(str(e))
+        return json.dumps({'error': str(e)})
+    finally:
+        cursor.close()
+        conn.close() 
+
+
+# allows a user to subscribe to a subsaiddit
+@app.route('/subscribe', methods=['POST','GET'])
+def subscribe():
+    try:
+        subsaiddit = request.form['subsaiddit_id']
+        user_id = session['user']
+        
+        data = (user_id, subsaiddit)
+        
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        
+        cursor.execute("INSERT INTO Subscribes (user_id, subsaidd_id) VALUES (%s,%s)", data)
+        
+        info = cursor.fetchone()
+        if info is None:
+            conn.commit()
+            return json.dumps({'html': '<span>Enter the required fields</span>'})
+        else:
+            return json.dumps({'error': str(data[0])})
+            
+    except Exception as e:
+        sys.stderr.write(str(e))
+        return json.dumps({'error': str(e)})
+    finally:
+        cursor.close()
+        conn.close() 
+
+
+# allows a user to unsubscribe to a subsaiddit
+@app.route('/unsubscribe', methods=['POST','GET'])
+def unsubscribe():
+    try:
+        subsaiddit = request.form['subsaiddit_id']
+        user_id = session['user']
+        
+        data = (user_id, subsaiddit)
+        
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        
+        cursor.execute("DELETE FROM Subscribes WHERE user_id=%s AND subsaidd_id=%s", data)
+        
+        info = cursor.fetchone()
+        if info is None:
+            conn.commit()
+            return json.dumps({'html': '<span>Enter the required fields</span>'})
+        else:
+            return json.dumps({'error': str(data[0])})
+            
+    except Exception as e:
+        sys.stderr.write(str(e))
+        return json.dumps({'error': str(e)})
+    finally:
+        cursor.close()
+        conn.close() 
+
+        
 if __name__ == "__main__":
     app.run(host=getenv('IP', '0.0.0.0'), port=int(getenv('PORT', 8080)))
+
