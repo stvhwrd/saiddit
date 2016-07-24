@@ -23,6 +23,9 @@
     <div class="container">
       <div class="navbar navbar-default navbar-fixed-top">
         <nav>
+          <a href="/">
+            <img src="../static/images/saiddit.png" alt="saiddit" height="36" width=auto>
+          </a>
           <ul class="nav nav-pills pull-right">
             <li role="presentation"><span id=name></span></li>
             <li role="presentation"><a href="/userHome">Home</a></li>
@@ -37,7 +40,6 @@
             </li>
           </ul>
         </nav>
-        <img src="../static/images/saiddit.png" alt="saiddit" height="36" width=auto>
       </div>
 
       <div>
@@ -53,25 +55,25 @@
         </div>
         <div class=container id=comments></div>
         <form method='post' class="tab non-bootstrap" action="/comment">
-          
+
           Comment:<br />
           <textarea name='comment' id='comment' rows="6" cols="30"></textarea><br />
           <input type='hidden' name='post_id' id='post_id' value="" />
           <button id="btnSubmitComment" class="btn btn-primary" type="button">Submit</button>
         </form>
-        
+
         <footer class="footer">
           <p>&copy; SSD 2016</p>
         </footer>
-    
+
     </div>
     <script type="text/javascript">
-      
+
       addName();
       addSignedInParentPost();
       addSignedInSubsaiddits();
       addComments();
-      
+
     </script>
   </body>
 </html>

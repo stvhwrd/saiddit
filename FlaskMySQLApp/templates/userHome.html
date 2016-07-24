@@ -21,8 +21,12 @@
 
   <body>
     <div class="container">
+
       <div class="navbar navbar-default navbar-fixed-top">
         <nav>
+          <a href="/">
+            <img src="../static/images/saiddit.png" alt="saiddit" height="36" width=auto>
+          </a>
           <ul class="nav nav-pills pull-right">
             <li role="presentation"><span id=name></span></li>
             <li role="presentation" class="active"><a href="#">Home</a></li>
@@ -37,7 +41,6 @@
             </li>
           </ul>
         </nav>
-        <img src="../static/images/saiddit.png" alt="saiddit" height="36" width=auto>
       </div>
 
       <div>
@@ -65,18 +68,18 @@
           <textarea name='post' id='post' rows="6" cols="30"></textarea><br/>
           <button id="btnSubmitPost" class="btn btn-primary" type="button">Submit</button>
         </form>
-        
+
         <footer class="footer">
           <p>&copy; SSD 2016</p>
         </footer>
-    
+
     </div>
     <script type="text/javascript">
-    
+
       addName();
       addSignedInPosts();
       addSignedInSubsaiddits();
-      
+
     </script>
   </body>
 </html>
