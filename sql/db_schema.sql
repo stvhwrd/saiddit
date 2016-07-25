@@ -139,31 +139,31 @@ SET NEW.creation_time = NOW();
 /* Accounts */
 
 INSERT INTO Accounts (username, password)
-VALUES ("bob", "bob");
+VALUES("bob",     "sha256$CrAFRnjr$b41dd1a93ef7cc9a1713321de0e158d0cc63e5b98d98ba533a6a3638e373277c")
 
 INSERT INTO Accounts (username, password)
-VALUES ("sarah", "sarah");
+VALUES ("james",  "sha256$NhfLNEOY$a392487514f840c431363d2781990cdc4d03d4b0b6a6563526a554474ab6b709")
 
 INSERT INTO Accounts (username, password)
-VALUES ("james", "james");
+VALUES ("kobe",   "sha256$1BKkuA36$a953540c3240b38bcf4b4b061f93f5e6ff357a0a79c7b31c5a62d517f8ea4101")
 
 INSERT INTO Accounts (username, password)
-VALUES ("rudy", "rudy");
+VALUES ("luke",   "sha256$ZUGpvc8h$7dba7d9c77aae3b57f2fe17ad2e3ef561269ea0746e4c185d2ee61353b7ebb6f")
 
 INSERT INTO Accounts (username, password)
-VALUES ("yoda", "yoda");
+VALUES ("paul",   "sha256$225Z93wE$5236f15b7c200d7376aad625783dba2c6a785c110101be59a28ce1dbd9daa08b")
 
 INSERT INTO Accounts (username, password)
-VALUES ("paul", "paul");
+VALUES ("rudy",   "sha256$TnW5iu3t$bcc6d7d7a6eea4ff35bbac2363a097e79920724f3bfb0e9518d91e3eb7f3eb89")
 
 INSERT INTO Accounts (username, password)
-VALUES ("kobe", "kobe");
+VALUES ("sarah",  "sha256$PgGFrrU1$f1f6c482b9a350d8a8d044a18e7a191b5d95764dbb3c0a8a63b867016574870c")
 
 INSERT INTO Accounts (username, password)
-VALUES ("sidney", "sidney");
+VALUES ("sidney", "sha256$ik2xz7bv$acc52890170ed94663ad6346f180a596d389817ae5f208bbf95420cdcb2c9cb5")
 
 INSERT INTO Accounts (username, password)
-VALUES ("luke", "luke");
+VALUES ("yoda",   "sha256$7KTwhXlz$04b4eda631d69d41282e95e7952aaa1f4ecbd88be4a2cf33056ec62493d694d9")
 
 
 /* Subsaiddits */
