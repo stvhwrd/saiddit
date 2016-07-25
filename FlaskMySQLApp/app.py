@@ -37,8 +37,8 @@ def showLogIn():
 @app.route('/userHome')
 def userHome():
     return render_template('userHome.html')
-    
-    
+
+
 # handles /subsaiddits URL to go to the unlogged in subsaiddit page
 @app.route('/subsaiddits')
 def subsaiddits():
@@ -49,9 +49,9 @@ def subsaiddits():
 @app.route('/userSubsaiddits')
 def userSubsaiddits():
     return render_template('userSubsaiddits.html')
-    
 
-    
+
+
 # handles /logOut URL to log out of an account
 @app.route('/logOut')
 def logOut():
@@ -144,21 +144,21 @@ def signUp():
 @app.route('/getName')
 def getName():
     return  json.dumps({'result': 'success', 'name':session['user']})
-    
+
 # returns data fron the provided query
 @app.route('/getQuery', methods=['POST', 'GET'])
 def getQuery():
     query = str(request.args.get('query'))
-    
+
     conn = mysql.connect()
     cursor = conn.cursor()
     cursor.execute(query)
     data = (cursor.fetchall())
-    
+
     result = jsonify(data)
-    return result    
-        
-        
+    return result
+
+
 # allows a user to comment and adds comment to database*
 @app.route('/comment', methods=['POST','GET'])
 def comment():
@@ -167,25 +167,25 @@ def comment():
         post_id = request.form['post_id']
         user_id = session['user']
         data = (text, post_id, user_id)
-        
+
         conn = mysql.connect()
         cursor = conn.cursor()
-        
+
         cursor.execute("INSERT INTO Comments (body, parent_post_id, commentor_id) VALUES (%s,%s,%s)", data)
-        
+
         info = cursor.fetchone()
         if info is None:
             conn.commit()
             return json.dumps({'html': '<span>Enter the required fields</span>'})
         else:
             return json.dumps({'error': str(data[0])})
-            
+
     except Exception as e:
         sys.stderr.write(str(e))
         return json.dumps({'error': str(e)})
     finally:
         cursor.close()
-        conn.close() 
+        conn.close()
 
 
 # allows a user upvote a post
@@ -197,17 +197,17 @@ def upvotePost():
         data = (user_id, post_id)
         conn = mysql.connect()
         cursor = conn.cursor()
-        
+
         cursor.execute("SELECT * FROM PostVotes WHERE user_id=%s AND post_id=%s ",data)
         info=cursor.fetchone()
-        
+
         if(info is None):
             data = (user_id, post_id, 1)
             cursor.execute("INSERT INTO PostVotes (user_id, post_id, vote) VALUES (%s,%s,%s)", data)
             conn.commit()
             cursor.execute("UPDATE Posts SET upvotes=upvotes+1 WHERE post_id='"+post_id+"'")
             conn.commit()
-            
+
             return json.dumps({'html': '<span>Enter the required fields</span>'})
         elif(info[1] == 0):
             cursor.execute("UPDATE Posts SET upvotes=upvotes+1 WHERE post_id='"+post_id+"'")
@@ -216,18 +216,18 @@ def upvotePost():
             conn.commit()
             cursor.execute("UPDATE PostVotes SET vote=1 WHERE post_id='"+post_id+"'")
             conn.commit()
-            
-            return json.dumps({'html': '<span>Enter the required fields</span>'}) 
+
+            return json.dumps({'html': '<span>Enter the required fields</span>'})
         else:
-            return json.dumps({'html': '<span>Enter the required fields</span>'}) 
+            return json.dumps({'html': '<span>Enter the required fields</span>'})
 
     except Exception as e:
         sys.stderr.write(str(e))
         return json.dumps({'error': str(e)})
     finally:
         cursor.close()
-        conn.close() 
-        
+        conn.close()
+
 # allows a user downvote a post
 @app.route('/downvotePost', methods=['POST','GET'])
 def downvotePost():
@@ -237,17 +237,17 @@ def downvotePost():
         data = (user_id, post_id)
         conn = mysql.connect()
         cursor = conn.cursor()
-        
+
         cursor.execute("SELECT * FROM PostVotes WHERE user_id=%s AND post_id=%s ",data)
         info=cursor.fetchone()
-        
+
         if(info is None):
             data = (user_id, post_id, 0)
             cursor.execute("INSERT INTO PostVotes (user_id, post_id, vote) VALUES (%s,%s,%s)", data)
             conn.commit()
             cursor.execute("UPDATE Posts SET downvotes=downvotes+1 WHERE post_id='"+post_id+"'")
             conn.commit()
-            
+
             return json.dumps({'html': '<span>Enter the required fields</span>'})
         elif(info[1] == 1):
             cursor.execute("UPDATE Posts SET downvotes=downvotes+1 WHERE post_id='"+post_id+"'")
@@ -256,17 +256,17 @@ def downvotePost():
             conn.commit()
             cursor.execute("UPDATE PostVotes SET vote=0 WHERE post_id='"+post_id+"'")
             conn.commit()
-            
-            return json.dumps({'html': '<span>Enter the required fields</span>'}) 
+
+            return json.dumps({'html': '<span>Enter the required fields</span>'})
         else:
-            return json.dumps({'html': '<span>Enter the required fields</span>'}) 
+            return json.dumps({'html': '<span>Enter the required fields</span>'})
 
     except Exception as e:
         sys.stderr.write(str(e))
         return json.dumps({'error': str(e)})
     finally:
         cursor.close()
-        conn.close() 
+        conn.close()
 
 
 # allows a user to subscribe to a subsaiddit
@@ -275,27 +275,27 @@ def subscribe():
     try:
         subsaiddit = request.form['subsaiddit_id']
         user_id = session['user']
-        
+
         data = (user_id, subsaiddit)
-        
+
         conn = mysql.connect()
         cursor = conn.cursor()
-        
+
         cursor.execute("INSERT INTO Subscribes (user_id, subsaidd_id) VALUES (%s,%s)", data)
-        
+
         info = cursor.fetchone()
         if info is None:
             conn.commit()
             return json.dumps({'html': '<span>Enter the required fields</span>'})
         else:
             return json.dumps({'error': str(data[0])})
-            
+
     except Exception as e:
         sys.stderr.write(str(e))
         return json.dumps({'error': str(e)})
     finally:
         cursor.close()
-        conn.close() 
+        conn.close()
 
 
 # allows a user to unsubscribe to a subsaiddit
@@ -304,27 +304,27 @@ def unsubscribe():
     try:
         subsaiddit = request.form['subsaiddit_id']
         user_id = session['user']
-        
+
         data = (user_id, subsaiddit)
-        
+
         conn = mysql.connect()
         cursor = conn.cursor()
-        
+
         cursor.execute("DELETE FROM Subscribes WHERE user_id=%s AND subsaidd_id=%s", data)
-        
+
         info = cursor.fetchone()
         if info is None:
             conn.commit()
             return json.dumps({'html': '<span>Enter the required fields</span>'})
         else:
             return json.dumps({'error': str(data[0])})
-            
+
     except Exception as e:
         sys.stderr.write(str(e))
         return json.dumps({'error': str(e)})
     finally:
         cursor.close()
-        conn.close() 
+        conn.close()
 
 
 # allows a user to post and adds comment to database*
@@ -336,30 +336,59 @@ def post():
         title = request.form['title']
         url = request.form['url']
         user_id = session['user']
-        
+
         if((body == "" and url == "") or subsaiddit == "" or title == "" ):
             return json.dumps({'html': '<span>Enter the required fields</span>'})
 
         data = (title, body, url, user_id, subsaiddit)
-        
+
         conn = mysql.connect()
         cursor = conn.cursor()
         sys.stderr.write(str(data)+"\n")
         cursor.execute("INSERT INTO Posts (title, body, url, author_key, subsaiddit) VALUES (%s,%s,%s,%s,%s)", data)
-        
+
         info = cursor.fetchone()
         if info is None:
             conn.commit()
             return json.dumps({'html': '<span>Enter the required fields</span>'})
         else:
             return json.dumps({'error': str(data[0])})
-            
+
     except Exception as e:
         sys.stderr.write(str(e))
         return json.dumps({'error': str(e)})
     finally:
         cursor.close()
-        conn.close() 
+        conn.close()
+
+
+# allows a user to unsubscribe to a subsaiddit
+@app.route('/deletePost', methods=['POST','GET'])
+def deletePost():
+    try:
+        post_id = request.form['post_id']
+        user_id = session['user']
+
+        data = (user_id, post_id)
+
+        conn = mysql.connect()
+        cursor = conn.cursor()
+
+        cursor.execute("DELETE FROM Posts WHERE author_key=%s AND post_id=%s", data)
+
+        info = cursor.fetchone()
+        if info is None:
+            conn.commit()
+            return json.dumps({'html': '<span>Enter the required fields</span>'})
+        else:
+            return json.dumps({'error': str(data[0])})
+
+    except Exception as e:
+        sys.stderr.write(str(e))
+        return json.dumps({'error': str(e)})
+    finally:
+        cursor.close()
+        conn.close()
 
 
 if __name__ == "__main__":
