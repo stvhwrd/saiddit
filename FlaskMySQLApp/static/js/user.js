@@ -175,6 +175,9 @@ function addSignedInParentPost(){
     document.getElementById('votes').innerHTML = "   " + (post[0][6]-post[0][7]) + "   ";
     document.getElementById('content').innerHTML = ((post[0][4] != null) ? post[0][4] : post[0][5]);
     document.getElementById('post_id').value = post[0][0];
+    if(post[0][9] == getName()){
+      document.getElementById("deletePost").innerHTML = "<button id='btnDeletePost' class='btn btn-primary' type='button'>Delete this post</button>";
+    }
 }
 
 //adds the current subsaiddit name to the dropdown menu
