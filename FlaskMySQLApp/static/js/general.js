@@ -90,7 +90,7 @@ function addParentPost(){
     document.getElementById('user').innerHTML = post[0][9];
     document.getElementById('subsaiddit').innerHTML = post[0][8];
     document.getElementById('votes').innerHTML = "   " + (post[0][6]-post[0][7]) + "   ";
-    document.getElementById('content').innerHTML = ((post[0][4] != null) ? "<img src='"+post[0][4]+"' style='width:80px;height:80px;'\>" : post[0][5]);
+    document.getElementById('content').innerHTML = ((post[0][4] != null || post[0][4] != "") ? "<img src='"+post[0][4]+"' style='width:80px;height:80px;'\>" : post[0][5]);
 }
 
 //adds the comments to the page
