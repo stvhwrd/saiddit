@@ -362,7 +362,7 @@ def post():
         conn.close()
 
 
-# allows a user to unsubscribe to a subsaiddit
+# allows a user to delete their own post
 @app.route('/deletePost', methods=['POST','GET'])
 def deletePost():
     try:

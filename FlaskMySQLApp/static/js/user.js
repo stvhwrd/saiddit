@@ -28,7 +28,7 @@ function getName(){
 //allows the user to submit a comment to the server
 $(function(){
 	$('#btnSubmitComment').click(function(){
-		
+
 		//submits comment
 		$.ajax({
 			url: '/comment',
@@ -47,7 +47,7 @@ $(function(){
 //allows the user to submit a post to the server
 $(function(){
 	$('#btnSubmitPost').click(function(){
-		
+
 		//submits post
 		$.ajax({
 			url: '/post',
@@ -65,7 +65,7 @@ $(function(){
 
 //Adds the users name to the top of the page
 function addName(){
-    document.getElementById("name").innerHTML = getName();   
+    document.getElementById("name").innerHTML = getName();
 }
 
 //adds posts data for a signed in user
@@ -73,7 +73,7 @@ function addSignedInPosts(){
     var i = 0;
 
     var data = getSignedInPosts();
-    
+
     //Sets the initial html for the posts
     for(i = 0; i<data.length; i++){
       var temp = data[i][0];
@@ -84,7 +84,7 @@ function addSignedInPosts(){
                   </div>";
       document.getElementById("post"+i).innerHTML = post;
     }
-    
+
     //Adds title data to page
     var title = 'title';
     for(i = 0; i < data.length; i++ ){
@@ -92,7 +92,7 @@ function addSignedInPosts(){
       document.getElementById(title).innerHTML = data[i][3];
       title = 'title';
     }
-    
+
     //Adds post content data to page
     var text = 'text';
     for(i = 0; i < data.length; i++ ){
@@ -104,7 +104,7 @@ function addSignedInPosts(){
       }
       text = 'text';
     }
-    
+
     //Adds posted by username data to page
     var user = 'user';
     for(i = 0; i < data.length; i++ ){
@@ -112,15 +112,15 @@ function addSignedInPosts(){
       document.getElementById(user).innerHTML = data[i][9];
       user = 'user';
     }
-    
-    //Adds posted to subsaiddit data to page        
+
+    //Adds posted to subsaiddit data to page
     var sub = 'sub';
     for(i = 0; i < data.length; i++ ){
       sub = sub + String(i);
       document.getElementById(sub).innerHTML = data[i][8];
       sub = 'sub';
     }
-    
+
     //Adds voting data to page
     var vote = 'vote';
     for(i = 0; i < data.length; i++ ){
@@ -133,18 +133,18 @@ function addSignedInPosts(){
 //adds subsaiddit names to dropdown for a signed in user
 function addSignedInSubsaiddits(){
     var i = 0;
-    
+
     var subsaiddits = getSubsaiddits();
     var userSubsaiddits = getUserSubsaiddits();
-    
+
     var subHTML = "";
     for(i = 0; i < userSubsaiddits.length; i++){
       subHTML += "<li><a id="+userSubsaiddits[i][0]+" href='/userSubsaiddits' onclick=\"location.href=this.href+'?subsaiddit_id='+this.id;return false;\"><b>"+userSubsaiddits[i][0]+"</b></a> <button id='btnUnsubscribe' value="+userSubsaiddits[i][0]+" type='button'  onclick='unsubscribe(this.value)' class='btn btn-default btn-xs'>Unsubscribe</button></li>";
     }
-    
+
     var skip = false;
     var j = 0;
-    
+
     for(i = 0; i < subsaiddits.length; i++){
       for(j = 0; j < userSubsaiddits.length; j++){
         if(subsaiddits[i][0] == userSubsaiddits[j][0]){
@@ -152,7 +152,7 @@ function addSignedInSubsaiddits(){
         }
       }
       if(skip){
-        
+
       }else{
         subHTML += "<li><a id="+subsaiddits[i][0]+" href='/userSubsaiddits' onclick=\"location.href=this.href+'?subsaiddit_id='+this.id;return false;\">"+subsaiddits[i][0]+"</a> <button value="+subsaiddits[i][0]+" type='button' onclick='subscribe(this.value)' class='btn btn-default btn-xs'>Subscribe</button></li>";
       }
@@ -166,7 +166,7 @@ function addSignedInParentPost(){
     var parameter = window.location.search.substring(1);
     parameter = parameter.split("=");
     parameter = parameter[1];
-    
+
     //Populates post infomation
     var post = getPost(parameter);
     document.getElementById('title').innerHTML = post[0][3];
@@ -182,11 +182,11 @@ function addSignedInSubsaidditPosts() {
     var parameter = window.location.search.substring(1);
     parameter = parameter.split("=");
     parameter = parameter[1];
-    
+
     var i = 0;
 
     var data = getSubsaidditPosts(parameter);
-    
+
     //Sets the initial html for the posts
     for(i = 0; i<data.length; i++){
       var temp = data[i][0];
@@ -197,7 +197,7 @@ function addSignedInSubsaidditPosts() {
                   </div>";
       document.getElementById("post"+i).innerHTML = post;
     }
-    
+
     //Adds title data to page
     var title = 'title';
     for(i = 0; i < data.length; i++ ){
@@ -205,7 +205,7 @@ function addSignedInSubsaidditPosts() {
       document.getElementById(title).innerHTML = data[i][3];
       title = 'title';
     }
-    
+
      //Adds post content data to page
     var text = 'text';
     for(i = 0; i < data.length; i++ ){
@@ -217,7 +217,7 @@ function addSignedInSubsaidditPosts() {
       }
       text = 'text';
     }
-    
+
     //Adds posted by username data to page
     var user = 'user';
     for(i = 0; i < data.length; i++ ){
@@ -225,15 +225,15 @@ function addSignedInSubsaidditPosts() {
       document.getElementById(user).innerHTML = data[i][9];
       user = 'user';
     }
-    
-    //Adds posted to subsaiddit data to page        
+
+    //Adds posted to subsaiddit data to page
     var sub = 'sub';
     for(i = 0; i < data.length; i++ ){
       sub = sub + String(i);
       document.getElementById(sub).innerHTML = data[i][8];
       sub = 'sub';
     }
-    
+
     //Adds voting data to page
     var vote = 'vote';
     for(i = 0; i < data.length; i++ ){
@@ -246,12 +246,12 @@ function addSignedInSubsaidditPosts() {
 //returns the post data from the server
 function getSignedInPosts(){
   var user = getName();
-  
+
 	var val;
     $.ajax({
 		url: '/getQuery',
 		type: 'GET',
-		
+
 		//If the front page doesnt load right, try changing the query to this? SELECT * FROM Posts JOIN (SELECT * FROM Subsaiddits WHERE front_page) AS sub ON subsaiddit=sub.title ORDER BY (upvotes-downvotes) DESC LIMIT 12
 		data: {'query':'SELECT Posts.post_id, Posts.publish_time, Posts.edit_time, Posts.title, Posts.url, Posts.body, Posts.upvotes, Posts.downvotes, Posts.subsaiddit, Posts.author_key FROM Posts JOIN Subscribes ON Posts.subsaiddit=Subscribes.subsaidd_id WHERE Subscribes.user_id="'+user+'" ORDER BY (upvotes-downvotes) DESC LIMIT 12'},
 		async: false,
@@ -270,12 +270,12 @@ function getSignedInPosts(){
 //returns the users subscribed subsaiddits
 function getUserSubsaiddits(){
   var user = getName();
-  
+
 	var val;
     $.ajax({
 		url: '/getQuery',
 		type: 'GET',
-		
+
 		//If the front page doesnt load right, try changing the query to this? SELECT * FROM Posts JOIN (SELECT * FROM Subsaiddits WHERE front_page) AS sub ON subsaiddit=sub.title ORDER BY (upvotes-downvotes) DESC LIMIT 12
 		data: {'query':'SELECT Subsaiddits.title FROM Subsaiddits JOIN Subscribes ON Subsaiddits.title=Subscribes.subsaidd_id WHERE Subscribes.user_id="'+user+'"'},
 		async: false,
@@ -311,7 +311,7 @@ function unsubscribe(subsaiddit){
 			console.log(error);
 		}
 	});
-} 
+}
 
 //allows the user to subscribe to a subsaiddit
 function subscribe(subsaiddit){
@@ -333,7 +333,7 @@ function subscribe(subsaiddit){
 			console.log(error);
 		}
 	});
-} 
+}
 
 //allows the user to upvote a post
 function upvotePost(post_id){
@@ -366,3 +366,39 @@ function downvotePost(post_id){
 		}
 	});
 }
+
+
+//allows the user to submit a comment to the server
+$(function(){
+	$('#btnDeletePost').click(function(){
+
+		//deletes comment
+		$.ajax({
+			url: '/deletePost',
+			data: $('form').serialize(),
+			type: 'POST',
+			success: function(response){
+				console.log(response);
+			},
+			error: function(error){
+				console.log(error);
+			}
+		});
+	});
+});
+
+// //allows the user to delete a post
+// function deletePost(post_id){
+
+//   $.ajax({
+// 		url: '/deletePost',
+// 		data: {'post_id':post_id},
+// 		type: 'POST',
+// 		success: function(response){
+
+// 		},
+// 		error: function(error){
+// 			console.log(error);
+// 		}
+// 	});
+// }
