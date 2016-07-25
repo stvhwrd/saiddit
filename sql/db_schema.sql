@@ -187,25 +187,25 @@ VALUES ("hockey", "go bar down", "sidney", 0);
 /* Posts */
 
 INSERT INTO Posts (title, url, subsaiddit, author_key, upvotes, downvotes)
-VALUES ("Rio Olympics disaster", "www.google.com", "news", "yoda", 2, 0);
+VALUES ("Rio Olympics disaster", "http://i.imgur.com/pDOqSs9.jpg", "news", "yoda", 2, 0);
 
-INSERT INTO Posts (title, url, subsaiddit, author_key, upvotes, downvotes)
-VALUES ("what was the best film you saw this week?", "www.youtube.com", "movies", "sarah", 1, 1);
+INSERT INTO Posts (title, body, subsaiddit, author_key, upvotes, downvotes)
+VALUES ("what was the best film you saw this week?", "?????????", "movies", "sarah", 1, 1);
 
-INSERT INTO Posts (title, url, subsaiddit, author_key, upvotes, downvotes)
+INSERT INTO Posts (title, body, subsaiddit, author_key, upvotes, downvotes)
 VALUES ("LV Team???", "las vegas gets a team", "hockey", "kobe", 0, 2);
 
 INSERT INTO Posts (title, url, subsaiddit, author_key, upvotes, downvotes)
-VALUES ("just a random link to a webpage", "www.yelp.com", "funny", "james", 0, 1);
+VALUES ("just a random link to a webpage", "https://s3-media2.fl.yelpcdn.com/assets/srv0/www_pages/95212dafe621/assets/img/brand_guidelines/yelp-2c.png", "funny", "james", 0, 1);
 
 INSERT INTO Posts (title, url, subsaiddit, author_key, upvotes, downvotes)
-VALUES ("funniest post of all time", "www.google.com", "all", "yoda", 0, 0);
+VALUES ("funniest post of all time", "http://caffaknitted.typepad.com/.a/6a00e54f8f86dc883401287636e5db970c-800wi", "all", "yoda", 0, 0);
 
 INSERT INTO Posts (title, body, subsaiddit, author_key, upvotes, downvotes)
 VALUES ("Attempted Coup in Turkey!!!", "words", "news", "yoda", 0, 0);
 
-INSERT INTO Posts (title, body, subsaiddit, author_key, upvotes, downvotes)
-VALUES ("Marvel's Dr. Strange - Comic Con trailer (2017)", "https://www.youtube.com/watch?v=HSzx-zryEgM", "movies", "sarah", 0, 0);
+INSERT INTO Posts (title, url, subsaiddit, author_key, upvotes, downvotes)
+VALUES ("Marvel's Dr. Strange - Comic Con trailer (2017)", "http://www.ew.com/sites/default/files/styles/tout_image_gallery_612/public/1450878107/Mystical-Strange-005-EW.jpg?itok=8MUzHbJT", "movies", "sarah", 0, 0);
 
 INSERT INTO Posts (title, body, subsaiddit, author_key, upvotes, downvotes)
 VALUES ("Running out of random titles", "gibberish", "news", "bob", 0, 0);
@@ -216,8 +216,8 @@ VALUES ("HI BILLY MAYS HERE", "slightly longer gibberish", "funny", "rudy", 0, 0
 INSERT INTO Posts (title, body, subsaiddit, author_key, upvotes, downvotes)
 VALUES ("Stanley Cup", "oilers will win the cup jk", "hockey", "paul", 0, 0);
 
-INSERT INTO Posts (title, body, subsaiddit, author_key, upvotes, downvotes)
-VALUES ("Yet another link to google", "www.google.com", "news", "yoda", 0, 0);
+INSERT INTO Posts (title, url, subsaiddit, author_key, upvotes, downvotes)
+VALUES ("Here's a cool new web browser", "https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_284x96dp.png", "news", "yoda", 0, 0);
 
 
 /* Comments */

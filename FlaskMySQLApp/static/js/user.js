@@ -98,7 +98,7 @@ function addSignedInPosts(){
     for(i = 0; i < data.length; i++ ){
       text = text + String(i);
       if(data[i][4] != null && data[i][4] != ""){
-        document.getElementById(text).innerHTML = data[i][4];
+        document.getElementById(text).innerHTML = "<img src='"+data[i][4]+"' style='width:80px;height:80px;'\>";
       }else if(data[i][5] != null && data[i][5] != ""){
          document.getElementById(text).innerHTML = data[i][5];
       }
@@ -173,7 +173,7 @@ function addSignedInParentPost(){
     document.getElementById('user').innerHTML = post[0][9];
     document.getElementById('subsaiddit').innerHTML = post[0][8];
     document.getElementById('votes').innerHTML = "   " + (post[0][6]-post[0][7]) + "   ";
-    document.getElementById('content').innerHTML = ((post[0][4] != null) ? post[0][4] : post[0][5]);
+    document.getElementById('content').innerHTML = ((post[0][4] != null) ? "<img src='"+post[0][4]+"' style='width:80px;height:80px;'\>" : post[0][5]);
     document.getElementById('post_id').value = post[0][0];
     if(post[0][9] == getName()){
       document.getElementById("deletePost").innerHTML = "<button id='btnDeletePost' class='btn btn-primary' type='button'>Delete this post</button>";
@@ -214,7 +214,7 @@ function addSignedInSubsaidditPosts() {
     for(i = 0; i < data.length; i++ ){
       text = text + String(i);
       if(data[i][4] != null && data[i][4] != ""){
-        document.getElementById(text).innerHTML = data[i][4];
+        document.getElementById(text).innerHTML = "<img src='"+data[i][4]+"' style='width:80px;height:80px;'\>";
       }else if(data[i][5] != null && data[i][5] != ""){
          document.getElementById(text).innerHTML = data[i][5];
       }
@@ -369,7 +369,6 @@ function downvotePost(post_id){
 		}
 	});
 }
-
 
 //allows the user to submit a comment to the server
 $(function(){
