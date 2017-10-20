@@ -1,5 +1,7 @@
 ![](FlaskMySQLApp/static/images/snoo-saiddit.png)
 
+> A minimal MySQL-based replica of core reddit functionality.
+
 ### Table of Contents
 1. [Installation & Setup](#installation-and-setup)
 2. [Cloud9](#cloud9)
@@ -9,28 +11,27 @@
     + [User](#user)
 3. [MySQL](#mysql)
   + [CheatSheet](#cheatsheet)
-4. [Flask](#flaskapp)
+4. [Flask](#flask)
   + [Resources](#resources)
   + [Structure](#structure)
 5. [Project Final Expectations and Deliverables](#project-final-expectations-and-deliverables)
 
 
 ----
-## Installation and Setup
-(Ubuntu 16.04 LTS)
+## Installation and Setup on Ubuntu 16.04 LTS
 
-#### Note: The chevrons (❯❯❯) represent the zsh shell command prompt.
+> Note: The chevrons (❯❯❯) represent the zsh shell command prompt.
 
 ### 1. Clone this repository:
 
-```
+```shell
 ❯❯❯ git clone https://github.com/stvhwrd/saiddit.git saiddit;
 ❯❯❯ cd saiddit;
 ```
 
 ### 2. [Install MySQL](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04):
 
-```
+```shell
 ❯❯❯ sudo apt update;
 ❯❯❯ sudo apt install mysql-server;
 ❯❯❯ sudo mysql_secure_installation;
@@ -39,58 +40,58 @@
 
 ### 3. [Launch MySQL and create our user](https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql):
 
-```
+```shell
 ❯❯❯ mysql -u saiddituser -p
 
 mysql> CREATE USER 'saiddituser'@'localhost' IDENTIFIED BY 'project';
 
-mysql> GRANT ALL PRIVILEGES ON * . * TO 'saiddit'@'localhost';
+mysql> GRANT ALL PRIVILEGES ON * . * TO 'saiddituser'@'localhost';
 
 ```
 
 ### 4. Create the database (will be required to enter password - `project`):
 
-```
+```shell
 ❯❯❯ cd ./sql;
 ❯❯❯ mysql -h localhost -u saiddituser -p < ./db_schema.sql;
 ```
 
-#### Note: If you are working in a Cloud9 instance, you may simply use the [setup script](#saiddit-database) at this step.
+#### Note: If you are working in a Cloud9 instance, you may simply use the [setup script](#saiddit-database) at this point.
 
 
 ### 5. Install Python 2.x and pip:
 
-```
+```shell
 ❯❯❯ sudo apt install python python-pip python-dev build-essential;
 ```
 
 
 ### 6. Then install python dependencies:
 
-```
+```shell
 ❯❯❯ sudo apt install libmysqlclient-dev;
 ❯❯❯ pip install flask flask-mysql;
-````
+```
 
 ### 7. Now start up your MySQL server, and use the saiddit database:
 
-````
+```shell
 ❯❯❯ mysql -u saiddituser -p;
 ❯❯❯ use saiddit;
-````
+```
 
 ### 8. Navigate to the `FlaskMySQLApp` folder, and fire up the Flask app:
 
 #### Note: the FlaskMySQLApp is a nested directory within the main `saiddit` directory. These instructions assume that your present working directory is `saiddit`.  Type `pwd` to find out which directory you are "in".
 
-````
+```shell
 ❯❯❯ cd ./FlaskMySQLApp
 ❯❯❯ python app.py
-````
+```
 
 ### 9. Now open your browser to the port the app is running on:  http://0.0.0.0:8080/
 
-
+---
 
 ## Cloud9
 
@@ -121,9 +122,9 @@ Normally you'll want to enter the MySQL command line interface as a user (not ro
 
 | Username | Password  |
 | :------: | :-------- |
-| 'csc370' | 'project' |
+| 'saiddituser' | 'project' |
 
-Administrative tasks can be done using the command prefix:
+Administrative tasks can be done using the command:
 
 `mysql -p -u saiddituser`
 
@@ -135,8 +136,8 @@ and then entering the password:
 
 #### Saiddit Database
 
-Setup the database by `bash setup.sh` in the sql folder.
-This inputs the contents of db_schema.sql into MySQL
+Set up the database by running `bash setup.sh` from the `sql` directory.
+This inserts the contents of `db_schema.sql` into MySQL, thereby building the database.
 
 <br>
 <br>
@@ -155,7 +156,7 @@ Here's a handy cheat sheet for playing with MySQL: [Sven Hofmann's MySQL Cheatsh
 
 ## Flask
 
-Flask is a Python web framework built with a small core and easy-to-extend philosophy.  We will be using it to interface between the HTML frontend and the MySQL backend.
+[Flask](http://flask.pocoo.org/) is a Python web framework built with a small core and easy-to-extend philosophy.  We will be using it to interface between the HTML frontend and the MySQL backend.
 
 <br>
 
@@ -174,7 +175,7 @@ Flask is a Python web framework built with a small core and easy-to-extend philo
 
 The basic file structure of a small flask application (as ours will be) is:
 
-````
+```shell
 FlaskApp/
 ├── app.py
 └── static/
@@ -184,7 +185,7 @@ FlaskApp/
     ├── index.html
     └── login.html
         ...
-````
+```shell
 
 <br>
 <br>
