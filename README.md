@@ -1,3 +1,5 @@
+![](FlaskMySQLApp/static/images/snoo-saiddit.png)
+
 ### Table of Contents
 1. [Installation & Setup](#installation-and-setup)
 2. [Cloud9](#cloud9)
