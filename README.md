@@ -1,4 +1,4 @@
-![](FlaskMySQLApp/static/images/snoo-saiddit.png)
+![](app/static/images/snoo-saiddit.png)
 
 > A minimal MySQL-based replica of core reddit functionality.
 
@@ -179,7 +179,7 @@ and then entering the password:
 
 #### Saiddit Database
 
-Set up the database by running `bash setup.sh` from the `sql` directory.
+Set up the database by running `bash setup.sh` from the `SQL` directory.
 This inserts the contents of `db_schema.sql` into MySQL, thereby building the database.
 
 <br>
@@ -219,7 +219,7 @@ Here's a handy cheat sheet for playing with MySQL: [Sven Hofmann's MySQL Cheatsh
 The basic file structure of a small flask application (as ours will be) is:
 
 ```shell
-FlaskApp/
+app/
 ├── app.py
 └── static/
     └── style.css
@@ -228,7 +228,7 @@ FlaskApp/
     ├── index.html
     └── login.html
         ...
-```shell
+```
 
 <br>
 <br>
