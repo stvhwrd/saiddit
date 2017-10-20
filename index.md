@@ -1,4 +1,4 @@
-![](app/static/images/snoo-saiddit.png)
+![](https://raw.githubusercontent.com/stvhwrd/saiddit/master/app/static/images/snoo-saiddit.png)
 
 > A minimal MySQL-based replica of core reddit functionality.
 
@@ -143,7 +143,7 @@ See the diagram below for a E/R diagram representation of the Saiddit DB.
 
 <br>
 
-![](saiddit-entity_relationship.png)
+![](https://raw.githubusercontent.com/stvhwrd/saiddit/master/Saiddit-entity_relationship.png)
 
 
 ### Credentials
