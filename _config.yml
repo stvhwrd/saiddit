@@ -1,0 +1,8 @@
+title: Saiddit-project
+description: Saiddit
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-slate
+
+gems:
+  - jekyll-mentions
