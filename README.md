@@ -17,22 +17,22 @@
 
 ----
 ## Installation and Setup
-(Ubuntu 14.04 LTS)
+(Ubuntu 16.04 LTS)
 
-#### Note: The chevrons (❯❯❯) represent the bash/zsh shell command prompt.
+#### Note: The chevrons (❯❯❯) represent the zsh shell command prompt.
 
 ### 1. Clone this repository:
 
 ```
-❯❯❯ git clone https://github.com/stvhwrd/csc370-project.git saiddit;
+❯❯❯ git clone https://github.com/stvhwrd/saiddit.git saiddit;
 ❯❯❯ cd saiddit;
 ```
 
-### 2. [Install MySQL](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-14-04):
+### 2. [Install MySQL](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04):
 
 ```
-❯❯❯ sudo apt-get update;
-❯❯❯ sudo apt-get install mysql-server;
+❯❯❯ sudo apt update;
+❯❯❯ sudo apt install mysql-server;
 ❯❯❯ sudo mysql_secure_installation;
 ❯❯❯ sudo mysql_install_db;
 ```
@@ -40,11 +40,11 @@
 ### 3. [Launch MySQL and create our user](https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql):
 
 ```
-❯❯❯ mysql -u csc370 -p
+❯❯❯ mysql -u saiddituser -p
 
-mysql> CREATE USER 'csc370'@'localhost' IDENTIFIED BY 'project';
+mysql> CREATE USER 'saiddituser'@'localhost' IDENTIFIED BY 'project';
 
-mysql> GRANT ALL PRIVILEGES ON * . * TO 'csc370'@'localhost';
+mysql> GRANT ALL PRIVILEGES ON * . * TO 'saiddit'@'localhost';
 
 ```
 
@@ -52,7 +52,7 @@ mysql> GRANT ALL PRIVILEGES ON * . * TO 'csc370'@'localhost';
 
 ```
 ❯❯❯ cd ./sql;
-❯❯❯ mysql -h localhost -u csc370 -p < ./db_schema.sql;
+❯❯❯ mysql -h localhost -u saiddituser -p < ./db_schema.sql;
 ```
 
 #### Note: If you are working in a Cloud9 instance, you may simply use the [setup script](#saiddit-database) at this step.
@@ -61,21 +61,21 @@ mysql> GRANT ALL PRIVILEGES ON * . * TO 'csc370'@'localhost';
 ### 5. Install Python 2.x and pip:
 
 ```
-❯❯❯ sudo apt-get install python python-pip python-dev build-essential;
+❯❯❯ sudo apt install python python-pip python-dev build-essential;
 ```
 
 
 ### 6. Then install python dependencies:
 
 ```
-❯❯❯ sudo apt-get install libmysqlclient-dev;
+❯❯❯ sudo apt install libmysqlclient-dev;
 ❯❯❯ pip install flask flask-mysql;
 ````
 
 ### 7. Now start up your MySQL server, and use the saiddit database:
 
 ````
-❯❯❯ mysql -u csc370 -p;
+❯❯❯ mysql -u saiddituser -p;
 ❯❯❯ use saiddit;
 ````
 
@@ -94,14 +94,14 @@ mysql> GRANT ALL PRIVILEGES ON * . * TO 'csc370'@'localhost';
 
 ## Cloud9
 
-[Cloud9](https://c9.io) is a cloud-based dev environment.  You can sign up / sign in with your GitHub account and access a [shared workspace](https://ide.c9.io/stvhwrd/csc370-project).  The team ([@dylgol](https://github.com/dylgol), [@sterlinglaird](https://github.com/sterlinglaird), [@stvhwrd](https://github.com/stvhwrd)) will always have access to the shared workspace, but you are welcome to clone it, start from scratch, or ignore it completely.
+[Cloud9](https://c9.io) is a cloud-based dev environment.  You can sign up / sign in with your GitHub account and access a [shared workspace](https://ide.c9.io/stvhwrd/saiddit).  Alternatively, you are welcome to clone it, start from scratch, or ignore it completely.
 
 <br>
 
 
 ### Test DB
 
-[Giuseppe Maxia test_db](https://github.com/datacharmer/test_db) is installed on the Cloud9 instance at https://ide.c9.io/stvhwrd/csc370-project, an Ubuntu workspace with a clone of this git repository.
+[Giuseppe Maxia test_db](https://github.com/datacharmer/test_db) is installed on the Cloud9 instance at https://ide.c9.io/stvhwrd/saiddit, an Ubuntu workspace with a clone of this git repository.
 
 <br>
 
@@ -125,7 +125,7 @@ Normally you'll want to enter the MySQL command line interface as a user (not ro
 
 Administrative tasks can be done using the command prefix:
 
-`mysql -p -u csc370`
+`mysql -p -u saiddituser`
 
 and then entering the password:
 
