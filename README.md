@@ -134,18 +134,16 @@ mysql> GRANT ALL PRIVILEGES ON * . * TO 'saiddituser'@'localhost';
 
 ---
 
-## Cloud9
+#### Saiddit Database
 
-[Cloud9](https://c9.io) is a cloud-based dev environment.  You can sign up / sign in with your GitHub account and access a [shared workspace](https://ide.c9.io/stvhwrd/saiddit).  Alternatively, you are welcome to clone it, start from scratch, or ignore it completely.
+Set up the database by running `bash setup.sh` from the `sql` directory.
+This runs all commands from `db_schema.sql` in MySQL, which creates and populates the `saiddit` database.
 
-<br>
-
-
-### Test DB
-
-[Giuseppe Maxia test_db](https://github.com/datacharmer/test_db) is installed on the Cloud9 instance at https://ide.c9.io/stvhwrd/saiddit, an Ubuntu workspace with a clone of this git repository.
+See the diagram below for a E/R diagram representation of the Saiddit DB.
 
 <br>
+
+![](saiddit-entity_relationship.png)
 
 
 ### Credentials
@@ -173,15 +171,6 @@ and then entering the password:
 
 `project`
 
-<br>
+# Credit
 
-#### Saiddit Database
-
-Set up the database by running `bash setup.sh` from the `sql` directory.
-This runs all commands from `db_schema.sql` in MySQL, which creates and populates the `saiddit` database.
-
-See the diagram below for an visual representation of the Saiddit DB.
-
-<br>
-
-![](Saiddit-entity_relationship.png)
+All contributors are listed on [this page](https://github.com/stvhwrd/saiddit/graphs/contributors).
