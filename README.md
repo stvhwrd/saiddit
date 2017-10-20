@@ -2,6 +2,48 @@
 
 > A minimal MySQL-based replica of core reddit functionality.
 
+The application is called "Saiddit".  It's an online community forum that allows accounts to post text and links to a given "subsaiddit" and allows other accounts to upvote, downvote, and comment on the posts.  The requirements elicitation team has extracted the following requirements:
+
+* **An account** has:
+    * username
+    * salted hash password
+    * reputation (upvotes minus downvotes).
+* An account can:
+    * post to any subsaiddit
+    * comment on any post
+    * maintain a friend list of other accounts
+    * maintain a list of favourite posts
+    * subscribe to a subsaiddit
+    * upvote or downvote (not both) once per post or comment
+    
+* **A post** has:
+    * author
+    * date/time published
+    * date/time edited (if applicable)
+    * title
+    * text (if it is a 'text' post)
+    * URL (if it is a 'link' post)
+    * upvotes
+    * downvotes
+    * subsaiddit it belongs to
+    
+* **A comment** has:
+    * author
+    * date/time published
+    * text
+    * the post it belongs to
+    * upvotes
+    * downvotes
+    * the comment it is replying to (if applicable)
+    
+* **A subsaiddit** has:
+    * title
+    * description
+    * author/creator
+    * date/time created
+    * default, or not default (whether it's shown on frontpage for unauthenticated user)
+
+
 ### Table of Contents
 1. [Installation & Setup](#installation-and-setup)
 2. [Cloud9](#cloud9)
@@ -18,7 +60,8 @@
 
 
 ----
-## Installation and Setup on Ubuntu 16.04 LTS
+## Installation and Setup
+The following instructions are for [Ubuntu 16.04 LTS](https://wiki.ubuntu.com/XenialXerus/ReleaseNotes).
 
 > Note: The chevrons (❯❯❯) represent the zsh shell command prompt.
 
@@ -56,7 +99,7 @@ mysql> GRANT ALL PRIVILEGES ON * . * TO 'saiddituser'@'localhost';
 ❯❯❯ mysql -h localhost -u saiddituser -p < ./db_schema.sql;
 ```
 
-#### Note: If you are working in a Cloud9 instance, you may simply use the [setup script](#saiddit-database) at this point.
+> Note: If you are working in a Cloud9 instance, you may simply use the [setup script](#saiddit-database) at this point.
 
 
 ### 5. Install Python 2.x and pip:
