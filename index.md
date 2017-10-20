@@ -46,17 +46,9 @@ The application is called "Saiddit".  It's an online community forum that allows
 
 ### Table of Contents
 1. [Installation & Setup](#installation-and-setup)
-2. [Cloud9](#cloud9)
-  + [Test DB](#test-db)
-  + [Credentials](#credentials)
-    + [Admin](#admin)
-    + [User](#user)
-3. [MySQL](#mysql)
-  + [CheatSheet](#cheatsheet)
-4. [Flask](#flask)
-  + [Resources](#resources)
-  + [Structure](#structure)
-5. [Project Final Expectations and Deliverables](#project-final-expectations-and-deliverables)
+2. [Saiddit Database](#saiddit-database)
+3. [Contributors](#credit)
+
 
 
 ----
@@ -145,31 +137,6 @@ See the diagram below for an E/R diagram representation of the Saiddit DB.
 
 ![](https://raw.githubusercontent.com/stvhwrd/saiddit/master/saiddit-entity_relationship.png)
 
-
-### Credentials
-
-#### User
-
-Normally you'll want to enter the MySQL command line interface as a user (not root):
-
-`mysql-ctl cli`
-
-<br>
-
-
-#### Admin
-
-| Username | Password  |
-| :------: | :-------- |
-| 'saiddituser' | 'project' |
-
-Administrative tasks can be done using the command:
-
-`mysql -p -u saiddituser`
-
-and then entering the password:
-
-`project`
 
 # Credit
 
