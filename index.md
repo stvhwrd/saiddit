@@ -139,11 +139,11 @@ mysql> GRANT ALL PRIVILEGES ON * . * TO 'saiddituser'@'localhost';
 Set up the database by running `bash setup.sh` from the `sql` directory.
 This runs all commands from `db_schema.sql` in MySQL, which creates and populates the `saiddit` database.
 
-See the diagram below for a E/R diagram representation of the Saiddit DB.
+See the diagram below for an E/R diagram representation of the Saiddit DB.
 
 <br>
 
-![](https://raw.githubusercontent.com/stvhwrd/saiddit/master/Saiddit-entity_relationship.png)
+![](https://raw.githubusercontent.com/stvhwrd/saiddit/master/saiddit-entity_relationship.png)
 
 
 ### Credentials
