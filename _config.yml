@@ -1,5 +1,5 @@
-title: Saiddit-project
-description: Saiddit
+title: Saiddit
+description: A minimal MySQL-based replica of core reddit functionality.
 google_analytics: 
 show_downloads: true
 theme: jekyll-theme-architect
