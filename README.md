@@ -2,7 +2,9 @@
 
 > A minimal MySQL-based replica of core reddit functionality.
 
-The application is called "Saiddit".  It's an online community forum that allows accounts to post text and links to a given "subsaiddit" and allows other accounts to upvote, downvote, and comment on the posts.  The requirements elicitation team has extracted the following requirements:
+----
+
+Saiddit is an online community forum that allows accounts to post text and links to a given "subsaiddit", and allows other accounts to upvote, downvote, and comment on the posts.
 
 * **An account** has:
     * username
