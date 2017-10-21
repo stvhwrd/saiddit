@@ -1,3 +1,25 @@
+/**
+ * We seek to accomplish the following tasks:
+ *
+ * 1. Get all of the posts by account A, sorted by highest rating (upvotes minus downvotes)
+ * 
+ * 2. Get all of the posts from account A’s friends, sorted by highest rating.
+ * 
+ * 3. Get account A’s subscrbed subsaiddits (include the default subsaiddits)
+ * 
+ * 4. Get account A’s favourite posts
+ * 
+ * 5. Get account A’s friends’ favourite posts
+ * 
+ * 6. Get all of subsaiddit S’s creator’s posts
+ * 
+ * 7. Get all of the posts in subsaiddit S that contain <some text> (Very basic search)
+ * 
+ * 8. Which query (of the previous 7) took the most time to execute? Why?
+ */
+
+
+
 /** 
 * Unless otherwise mentioned, 'Account A' =yoda, 
 * and 'Account A's friend' = sarah 
