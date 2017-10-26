@@ -80,7 +80,7 @@ The following instructions are for [Ubuntu 16.04 LTS](https://wiki.ubuntu.com/Xe
 ❯❯❯ sudo mysql_install_db;
 ```
 
-## 3. [Launch MySQL and create our user](https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql) with passowrd `secretpassword`:
+## 3. [Launch MySQL and create our user](https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql) with password `secretpassword`:
 
 ```shell
 ❯❯❯ mysql -u saiddituser -p
