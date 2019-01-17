@@ -2,7 +2,7 @@ title: Saiddit
 description: A minimal MySQL-based replica of core reddit functionality.
 google_analytics: 
 show_downloads: true
-theme: jekyll-theme-architect
+theme: jekyll-theme-slate
 
 gems:
   - jekyll-mentions
