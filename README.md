@@ -50,7 +50,7 @@ Saiddit is an online community forum that allows accounts to post text and links
 ### Table of Contents
 1. [Installation & Setup](#installation-and-setup)
 2. [MySQL](#mysql)
-  + [CheatSheet](#cheatsheet)
+  + [Cheat Sheet](#cheat-sheet)
 3. [Flask](#flaskapp)
   + [Resources](#resources)
   + [Structure](#structure)
@@ -62,7 +62,7 @@ Saiddit is an online community forum that allows accounts to post text and links
 # Installation and Setup
 The following instructions are for [Ubuntu 16.04 LTS](https://wiki.ubuntu.com/XenialXerus/ReleaseNotes).
 
-> Note: The chevrons (❯❯❯) represent the zsh shell command prompt.
+> Note: The chevrons (❯❯❯) represent the zsh prompt
 
 ## 1. Clone this repository:
 
@@ -80,7 +80,9 @@ The following instructions are for [Ubuntu 16.04 LTS](https://wiki.ubuntu.com/Xe
 ❯❯❯ sudo mysql_install_db;
 ```
 
-## 3. [Launch MySQL and create our user](https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql) with password `secretpassword`:
+## 3. [Launch MySQL and create our user](https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql):
+
+> The password we're using is `secretpassword`
 
 ```shell
 ❯❯❯ mysql -u saiddituser -p
@@ -91,7 +93,7 @@ mysql> GRANT ALL PRIVILEGES ON * . * TO 'saiddituser'@'localhost';
 
 ```
 
-## 4. Create the database (will be required to enter the sudo password)
+## 4. Create the database (you will be required to enter the `sudo` password):
 
 ```shell
 ❯❯❯ cd ./sql;
@@ -122,7 +124,9 @@ mysql> GRANT ALL PRIVILEGES ON * . * TO 'saiddituser'@'localhost';
 ❯❯❯ use saiddit;
 ```
 
-## 8. Navigate to the `app` directory, and fire up the Flask app.  These commands assume that your [`pwd`](https://en.wikipedia.org/wiki/Pwd) is `saiddit`.
+## 8. Navigate to the `app` directory, and fire up the Flask app:
+
+> These commands assume that your [`pwd`](https://en.wikipedia.org/wiki/Pwd) is `saiddit`.
 
 ```shell
 ❯❯❯ cd ./app
@@ -136,7 +140,7 @@ mysql> GRANT ALL PRIVILEGES ON * . * TO 'saiddituser'@'localhost';
 
 "MySQL (officially pronounced as "My S-Q-L") is an open-source relational database management system... the world's second most widely used RDBMS, and the most widely used open-source client–server model RDBMS." - [Wikipedia](https://en.wikipedia.org/wiki/MySQL)
 
-## Cheatsheet
+## Cheat Sheet
 
 Here's a handy cheat sheet for playing with MySQL: [Sven Hofmann's MySQL Cheatsheet](https://gist.github.com/hofmannsven/9164408#file-readme-md)
 
